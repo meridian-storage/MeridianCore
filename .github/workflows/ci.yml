@@ -91,4 +91,5 @@ jobs:
             .artifacts/first/*
             .artifacts/meridian-storage-core-*.spdx.json
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 30

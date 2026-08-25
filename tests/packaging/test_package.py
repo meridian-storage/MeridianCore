@@ -64,6 +64,7 @@ def test_ci_has_multi_python_quality_reproducibility_and_gated_publication() -> 
     assert '["3.12", "3.13", "3.14"]' in ci
     assert "compare_artifacts.py" in ci
     assert "generate_sbom.py" in ci
+    assert "include-hidden-files: true" in ci
     assert "attest-build-provenance" in release
     assert "PYPI_TRUSTED_PUBLISHING_ENABLED == 'true'" in release
     assert "gh-action-pypi-publish" in release
