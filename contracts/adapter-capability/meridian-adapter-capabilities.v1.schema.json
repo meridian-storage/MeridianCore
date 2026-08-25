@@ -1,0 +1,104 @@
+{
+  "$comment": "SPDX-License-Identifier: Apache-2.0",
+  "$id": "https://github.com/zephytiju/meridian-storage-core/contracts/adapter-capability/meridian-adapter-capabilities.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meridian V1 Adapter capability manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formatVersion",
+    "descriptor",
+    "engineProfile",
+    "engineVersion",
+    "availableOperationContracts",
+    "extensions"
+  ],
+  "properties": {
+    "formatVersion": { "const": "meridian-adapter-capabilities.v1" },
+    "descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adapterId",
+        "adapterContractVersion",
+        "driver",
+        "supportedEngineVersions",
+        "capabilities"
+      ],
+      "properties": {
+        "adapterId": { "$ref": "#/$defs/name" },
+        "adapterContractVersion": { "$ref": "#/$defs/name" },
+        "driver": { "$ref": "#/$defs/name" },
+        "supportedEngineVersions": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "$ref": "#/$defs/name" }
+          }
+        },
+        "capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/operationCapability" }
+        }
+      }
+    },
+    "engineProfile": { "$ref": "#/$defs/name" },
+    "engineVersion": { "$ref": "#/$defs/name" },
+    "availableOperationContracts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/name" }
+    },
+    "extensions": { "type": "object" }
+  },
+  "$defs": {
+    "name": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "limits": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "operationCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operationContract",
+        "operationVersions",
+        "guarantees",
+        "limits",
+        "cursorBehavior",
+        "migrationBehavior",
+        "healthProbes",
+        "extensions"
+      ],
+      "properties": {
+        "operationContract": { "$ref": "#/$defs/name" },
+        "operationVersions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/name" }
+        },
+        "guarantees": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/name" }
+        },
+        "limits": { "$ref": "#/$defs/limits" },
+        "cursorBehavior": { "$ref": "#/$defs/name" },
+        "migrationBehavior": { "$ref": "#/$defs/name" },
+        "healthProbes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/name" }
+        },
+        "extensions": { "type": "object" }
+      }
+    }
+  }
+}

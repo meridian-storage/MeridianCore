@@ -1,0 +1,41 @@
+{
+  "$comment": "SPDX-License-Identifier: Apache-2.0",
+  "adapterCapabilityFormat": "meridian-adapter-capabilities.v1",
+  "adapterContract": {
+    "supported": [
+      "1.x"
+    ]
+  },
+  "catalogProviderContract": {
+    "supported": [
+      "1.x"
+    ]
+  },
+  "coreVersion": "1.0.0",
+  "formatVersion": "meridian-compatibility.v1",
+  "expressionFormats": [
+    "meridian-expression.v1"
+  ],
+  "operationFormats": [
+    "meridian-operation.v1"
+  ],
+  "outOfScope": [
+    "engine-specific expression escape hatches",
+    "cross-binding transactions",
+    "federated query",
+    "production DDL",
+    "untrusted remote adapter loading"
+  ],
+  "pluginContract": {
+    "supported": [
+      "1.x"
+    ]
+  },
+  "python": ">=3.12",
+  "runtimeConfigFormat": "meridian-config.v1",
+  "schemaProviderContract": {
+    "supported": [
+      "1.x"
+    ]
+  }
+}

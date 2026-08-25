@@ -1,0 +1,134 @@
+{
+  "formatVersion": "meridian-config.v1",
+  "profile": "example",
+  "catalogs": {
+    "providers": [
+      {
+        "name": "structured",
+        "package": "meridian-storage-semantics",
+        "contract": "1.x",
+        "requiredFingerprint": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    ],
+    "extensions": {}
+  },
+  "resources": {
+    "pins": [
+      {
+        "ref": {
+          "catalog": "structured",
+          "namespace": "investigation",
+          "name": "cases"
+        },
+        "providerId": "investigation.schemas",
+        "requiredFingerprint": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+      }
+    ],
+    "extensions": {}
+  },
+  "schemas": {
+    "providers": [
+      {
+        "id": "investigation.schemas",
+        "package": "investigation-schema-provider",
+        "contract": "1.x",
+        "requiredFingerprint": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+      }
+    ],
+    "live": {
+      "enabled": false,
+      "required": false,
+      "providerId": null
+    },
+    "extensions": {}
+  },
+  "bindings": [
+    {
+      "id": "primary",
+      "adapterId": "postgresql",
+      "adapterContract": "1.x",
+      "engineProfile": "postgresql",
+      "engineVersion": "17.1.0",
+      "endpoint": null,
+      "serviceRef": "platform.database.primary",
+      "physicalNamespace": "investigation",
+      "tls": {
+        "mode": "server",
+        "serverName": "database.internal",
+        "caRef": {
+          "provider": "file",
+          "reference": "/var/run/secrets/database-ca"
+        },
+        "clientCertificateRef": null
+      },
+      "identityRef": {
+        "provider": "environment",
+        "reference": "MERIDIAN_DATABASE_IDENTITY"
+      },
+      "secretRef": {
+        "provider": "environment",
+        "reference": "MERIDIAN_DATABASE_CREDENTIAL"
+      },
+      "client": {
+        "minSize": 1,
+        "maxSize": 16,
+        "acquireTimeoutMs": 1000,
+        "idleTimeoutMs": 30000,
+        "operationTimeoutMs": 5000,
+        "maxResultBytes": 10485760,
+        "iteratorLifetimeMs": 30000
+      },
+      "requiredCapabilityFingerprint": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "requiredPhysicalFingerprint": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "compatibilityPins": {
+        "coreVersion": "1.0.0",
+        "engineProfile": "postgresql",
+        "engineVersion": "17.1.0"
+      },
+      "settings": {},
+      "extensions": {}
+    }
+  ],
+  "placements": [
+    {
+      "id": "primary-resources",
+      "selector": {
+        "resources": [
+          {
+            "catalog": "structured",
+            "namespace": "investigation",
+            "name": "cases"
+          }
+        ],
+        "catalog": null,
+        "labels": {}
+      },
+      "bindingId": "primary",
+      "extensions": {}
+    }
+  ],
+  "validation": {
+    "strict": true,
+    "requirePhysicalFingerprints": true,
+    "defaultOperationTimeoutMs": 5000,
+    "idempotencyCacheEntries": 10000,
+    "retry": {
+      "maxAttempts": 3,
+      "baseDelayMs": 25,
+      "maxDelayMs": 250,
+      "jitterRatio": 0.2
+    }
+  },
+  "telemetry": {
+    "enabled": true,
+    "serviceName": "investigation-api",
+    "suppressExporterRecursion": true,
+    "attributes": {
+      "deployment.environment": "example"
+    },
+    "extensions": {}
+  },
+  "extensions": {
+    "spdxLicenseIdentifier": "Apache-2.0"
+  }
+}

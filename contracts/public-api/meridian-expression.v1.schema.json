@@ -1,0 +1,17 @@
+{
+  "$comment": "SPDX-License-Identifier: Apache-2.0",
+  "$id": "https://github.com/zephytiju/meridian-storage-core/contracts/public-api/meridian-expression.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meridian V1 Catalog Expression",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["formatVersion", "catalog", "method", "arguments"],
+  "properties": {
+    "formatVersion": { "const": "meridian-expression.v1" },
+    "catalog": {
+      "enum": ["structured", "object", "cache", "evidence", "streaming"]
+    },
+    "method": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "arguments": { "type": "object" }
+  }
+}
