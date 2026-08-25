@@ -1,0 +1,78 @@
+{
+  "$comment": "SPDX-License-Identifier: Apache-2.0",
+  "$id": "https://github.com/zephytiju/meridian-storage-core/contracts/public-api/meridian-operation.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meridian V1 normalized Operation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formatVersion",
+    "catalog",
+    "operationContract",
+    "operationVersion",
+    "resources",
+    "input",
+    "requirements",
+    "readOnly",
+    "idempotent"
+  ],
+  "properties": {
+    "formatVersion": { "const": "meridian-operation.v1" },
+    "catalog": {
+      "enum": ["structured", "object", "cache", "evidence", "streaming"]
+    },
+    "operationContract": { "$ref": "#/$defs/name" },
+    "operationVersion": { "$ref": "#/$defs/name" },
+    "resources": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/resourceRef" }
+    },
+    "input": { "type": "object" },
+    "requirements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/requirement" }
+    },
+    "readOnly": { "type": "boolean" },
+    "idempotent": { "type": "boolean" }
+  },
+  "$defs": {
+    "name": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "resourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["catalog", "namespace", "name"],
+      "properties": {
+        "catalog": {
+          "enum": ["structured", "object", "cache", "evidence", "streaming"]
+        },
+        "namespace": { "$ref": "#/$defs/name" },
+        "name": { "$ref": "#/$defs/name" }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operationContract",
+        "operationVersion",
+        "guarantees",
+        "minimumLimits"
+      ],
+      "properties": {
+        "operationContract": { "$ref": "#/$defs/name" },
+        "operationVersion": { "$ref": "#/$defs/name" },
+        "guarantees": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/name" }
+        },
+        "minimumLimits": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

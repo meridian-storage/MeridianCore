@@ -1,0 +1,303 @@
+{
+  "$comment": "SPDX-License-Identifier: Apache-2.0",
+  "$id": "https://github.com/zephytiju/meridian-storage-core/contracts/runtime-config/meridian-config.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meridian V1 runtime configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formatVersion",
+    "profile",
+    "catalogs",
+    "resources",
+    "schemas",
+    "bindings",
+    "placements",
+    "validation"
+  ],
+  "properties": {
+    "formatVersion": { "const": "meridian-config.v1" },
+    "profile": { "$ref": "#/$defs/name" },
+    "catalogs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providers", "extensions"],
+      "properties": {
+        "providers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "package", "contract", "requiredFingerprint"],
+            "properties": {
+              "name": { "$ref": "#/$defs/catalog" },
+              "package": { "$ref": "#/$defs/name" },
+              "contract": { "$ref": "#/$defs/name" },
+              "requiredFingerprint": { "$ref": "#/$defs/fingerprint" }
+            }
+          }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pins", "extensions"],
+      "properties": {
+        "pins": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ref", "providerId", "requiredFingerprint"],
+            "properties": {
+              "ref": { "$ref": "#/$defs/resourceRef" },
+              "providerId": { "$ref": "#/$defs/name" },
+              "requiredFingerprint": { "$ref": "#/$defs/fingerprint" }
+            }
+          }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "schemas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providers", "live", "extensions"],
+      "properties": {
+        "providers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "package", "contract", "requiredFingerprint"],
+            "properties": {
+              "id": { "$ref": "#/$defs/name" },
+              "package": { "$ref": "#/$defs/name" },
+              "contract": { "$ref": "#/$defs/name" },
+              "requiredFingerprint": { "$ref": "#/$defs/fingerprint" }
+            }
+          }
+        },
+        "live": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["enabled", "required", "providerId"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "required": { "type": "boolean" },
+            "providerId": { "oneOf": [{ "$ref": "#/$defs/name" }, { "type": "null" }] }
+          }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "bindings": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/binding" }
+    },
+    "placements": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/placement" }
+    },
+    "validation": { "$ref": "#/$defs/validation" },
+    "telemetry": { "$ref": "#/$defs/telemetry" },
+    "extensions": { "$ref": "#/$defs/extensions" }
+  },
+  "$defs": {
+    "name": { "type": "string", "minLength": 1, "maxLength": 512 },
+    "catalog": {
+      "enum": ["structured", "object", "cache", "evidence", "streaming"]
+    },
+    "fingerprint": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "extensions": { "type": "object" },
+    "resourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["catalog", "namespace", "name"],
+      "properties": {
+        "catalog": { "$ref": "#/$defs/catalog" },
+        "namespace": { "$ref": "#/$defs/name" },
+        "name": { "$ref": "#/$defs/name" }
+      }
+    },
+    "secretRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "reference"],
+      "properties": {
+        "provider": { "$ref": "#/$defs/name" },
+        "reference": { "type": "string", "minLength": 1, "maxLength": 2048 }
+      }
+    },
+    "tls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "serverName", "caRef", "clientCertificateRef"],
+      "properties": {
+        "mode": { "enum": ["disabled", "server", "mutual"] },
+        "serverName": { "type": ["string", "null"], "minLength": 1, "maxLength": 512 },
+        "caRef": { "oneOf": [{ "$ref": "#/$defs/secretRef" }, { "type": "null" }] },
+        "clientCertificateRef": {
+          "oneOf": [{ "$ref": "#/$defs/secretRef" }, { "type": "null" }]
+        }
+      }
+    },
+    "client": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minSize",
+        "maxSize",
+        "acquireTimeoutMs",
+        "idleTimeoutMs",
+        "operationTimeoutMs",
+        "maxResultBytes",
+        "iteratorLifetimeMs"
+      ],
+      "properties": {
+        "minSize": { "type": "integer", "minimum": 0, "maximum": 10000 },
+        "maxSize": { "type": "integer", "minimum": 1, "maximum": 10000 },
+        "acquireTimeoutMs": { "type": "integer", "minimum": 1, "maximum": 3600000 },
+        "idleTimeoutMs": { "type": "integer", "minimum": 0, "maximum": 86400000 },
+        "operationTimeoutMs": { "type": "integer", "minimum": 1, "maximum": 3600000 },
+        "maxResultBytes": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+        "iteratorLifetimeMs": { "type": "integer", "minimum": 1, "maximum": 86400000 }
+      }
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "adapterId",
+        "adapterContract",
+        "engineProfile",
+        "engineVersion",
+        "endpoint",
+        "serviceRef",
+        "physicalNamespace",
+        "tls",
+        "identityRef",
+        "secretRef",
+        "client",
+        "requiredCapabilityFingerprint",
+        "requiredPhysicalFingerprint",
+        "compatibilityPins",
+        "settings",
+        "extensions"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/name" },
+        "adapterId": { "$ref": "#/$defs/name" },
+        "adapterContract": { "$ref": "#/$defs/name" },
+        "engineProfile": { "$ref": "#/$defs/name" },
+        "engineVersion": { "$ref": "#/$defs/name" },
+        "endpoint": { "type": ["string", "null"], "minLength": 1, "maxLength": 2048 },
+        "serviceRef": { "type": ["string", "null"], "minLength": 1, "maxLength": 512 },
+        "physicalNamespace": { "$ref": "#/$defs/name" },
+        "tls": { "$ref": "#/$defs/tls" },
+        "identityRef": { "$ref": "#/$defs/secretRef" },
+        "secretRef": { "$ref": "#/$defs/secretRef" },
+        "client": { "$ref": "#/$defs/client" },
+        "requiredCapabilityFingerprint": { "$ref": "#/$defs/fingerprint" },
+        "requiredPhysicalFingerprint": {
+          "oneOf": [{ "$ref": "#/$defs/fingerprint" }, { "type": "null" }]
+        },
+        "compatibilityPins": {
+          "type": "object",
+          "additionalProperties": { "type": "string", "minLength": 1, "maxLength": 512 }
+        },
+        "settings": { "type": "object" },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "placement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "selector", "bindingId", "extensions"],
+      "properties": {
+        "id": { "$ref": "#/$defs/name" },
+        "selector": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["resources", "catalog", "labels"],
+          "anyOf": [
+            { "properties": { "resources": { "minItems": 1 } } },
+            { "properties": { "catalog": { "$ref": "#/$defs/catalog" } } },
+            { "properties": { "labels": { "minProperties": 1 } } }
+          ],
+          "properties": {
+            "resources": { "type": "array", "items": { "$ref": "#/$defs/resourceRef" } },
+            "catalog": { "oneOf": [{ "$ref": "#/$defs/catalog" }, { "type": "null" }] },
+            "labels": {
+              "type": "object",
+              "additionalProperties": { "type": "string", "minLength": 1, "maxLength": 512 }
+            }
+          }
+        },
+        "bindingId": { "$ref": "#/$defs/name" },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strict",
+        "requirePhysicalFingerprints",
+        "defaultOperationTimeoutMs",
+        "idempotencyCacheEntries",
+        "retry"
+      ],
+      "properties": {
+        "strict": { "const": true },
+        "requirePhysicalFingerprints": { "type": "boolean" },
+        "defaultOperationTimeoutMs": { "type": "integer", "minimum": 1, "maximum": 3600000 },
+        "idempotencyCacheEntries": { "type": "integer", "minimum": 1, "maximum": 1000000 },
+        "retry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["maxAttempts", "baseDelayMs", "maxDelayMs", "jitterRatio"],
+          "properties": {
+            "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 20 },
+            "baseDelayMs": { "type": "integer", "minimum": 0, "maximum": 60000 },
+            "maxDelayMs": { "type": "integer", "minimum": 0, "maximum": 600000 },
+            "jitterRatio": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "serviceName",
+        "suppressExporterRecursion",
+        "attributes",
+        "extensions"
+      ],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "serviceName": { "type": ["string", "null"], "minLength": 1, "maxLength": 512 },
+        "suppressExporterRecursion": { "const": true },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": { "type": "string", "minLength": 1, "maxLength": 512 }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    }
+  }
+}
