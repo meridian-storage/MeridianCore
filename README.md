@@ -2,7 +2,7 @@
 
 # Meridian Storage Core
 
-[![CI](https://github.com/zephytiju/meridian-storage-core/actions/workflows/ci.yml/badge.svg)](https://github.com/zephytiju/meridian-storage-core/actions/workflows/ci.yml)
+[![CI](https://github.com/zephytiju/MeridianCore/actions/workflows/ci.yml/badge.svg)](https://github.com/zephytiju/MeridianCore/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-%3E%3D3.12-blue.svg)](pyproject.toml)
 

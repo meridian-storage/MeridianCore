@@ -39,9 +39,9 @@ test = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/zephytiju/meridian-storage-core#readme"
-Issues = "https://github.com/zephytiju/meridian-storage-core/issues"
-Repository = "https://github.com/zephytiju/meridian-storage-core"
+Documentation = "https://github.com/zephytiju/MeridianCore#readme"
+Issues = "https://github.com/zephytiju/MeridianCore/issues"
+Repository = "https://github.com/zephytiju/MeridianCore"
 
 [tool.hatch.build]
 include = [
