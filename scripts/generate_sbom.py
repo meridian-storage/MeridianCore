@@ -62,7 +62,7 @@ def main() -> None:
         },
         "dataLicense": "CC0-1.0",
         "documentNamespace": (
-            "https://github.com/zephytiju/meridian-storage-core/sbom/" + namespace_digest
+            "https://github.com/zephytiju/MeridianCore/sbom/" + namespace_digest
         ),
         "files": files,
         "name": "meridian-storage-core-1.0.0-release",
