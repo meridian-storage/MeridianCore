@@ -61,9 +61,7 @@ def main() -> None:
             "creators": ["Tool: meridian-storage-core/generate_sbom.py-1.0.0"],
         },
         "dataLicense": "CC0-1.0",
-        "documentNamespace": (
-            "https://github.com/zephytiju/MeridianCore/sbom/" + namespace_digest
-        ),
+        "documentNamespace": ("https://github.com/zephytiju/MeridianCore/sbom/" + namespace_digest),
         "files": files,
         "name": "meridian-storage-core-1.0.0-release",
         "packages": [
