@@ -77,9 +77,20 @@ one Binding. Cross-Binding Operations fail before an adapter session is opened.
 Core applies the tighter of the caller and configured deadlines. Reads may retry
 typed retryable failures within the bounded policy. Mutations may retry only
 when the Operation is declared idempotent and the context has an idempotency
-key. The idempotency key is scoped by Binding, principal, and tenant; a different
-request fingerprint conflicts. Failed owners release their claim. Result byte
+key. The idempotency key is scoped by Binding, principal, tenant, and the complete
+effective scope mapping supplied to the adapter. Scope order is insignificant;
+request, correlation, trace, and deadline metadata do not change replay identity.
+A different request fingerprint within that domain conflicts. Failed owners release their claim. Result byte
 counts are enforced before returning an immutable `OperationResult`.
+
+Catalog providers own put syntax and normalize existence mode into Operation
+input. Core preserves that input in the request fingerprint, matches the
+normalized Operation version to its Catalog manifest, and checks exact adapter
+versions and guarantees before opening a mutation session. It does not supply
+defaults for serialized omissions or downgrade an unsupported contract to upsert.
+The existing Expression and Operation envelopes can carry a Catalog-owned new
+operation version without changing the Core SPI. Tests exercise a version-2
+Catalog manifest and operation with the existing deployment contract pin.
 
 ## Transactions
 
@@ -91,6 +102,35 @@ session. A nested exception or explicit rollback-only flag causes the outermost
 boundary to roll back. Runtime identity, Binding, and request owner must all
 match. Core never retries work inside a transaction or replays a transaction
 callback.
+
+Each Operation references Resources from exactly one Catalog. Separate child
+Operations from different Catalogs may join the same explicit transaction and
+session when Binding, runtime, request owner, and capabilities match. Returned
+results remain provisional until the outermost commit. An exception escaping
+that boundary or `set_rollback_only()` rolls back its writes. Catching a child
+validation error inside the boundary retains existing behavior: earlier writes
+can commit unless the caller re-raises or marks rollback-only. Core neither
+generates audit Data nor checks for omitted audit Operations. Required evidence
+uses the exact `atomic-evidence` guarantee; another guarantee is not an alias.
+
+## Released dependency conformance
+
+`tests/real_engine` runs the facade on disposable PostgreSQL/PostGIS local and
+primary-with-two-standby cluster profiles. It verifies scope-separated writes,
+same-scope replay/conflict, mixed-Catalog session reuse, visibility before commit,
+rollback, ownership and cross-Binding rejection. Adapter calls are observed but
+their execution, descriptors, and guarantees are unmodified. Current released
+OpenSearch projection and ClickHouse append-version descriptors reject the new
+authoritative put version. These tests run before CI artifacts or releases pass.
+
+Fixtures install exact published PostgreSQL, Semantics, Query, Evidence,
+OpenSearch, and ClickHouse 1.0.0 wheels, then replace only Core with its candidate
+wheel. This is an explicit compatibility experiment: those releases' metadata
+still pins Core 1.0.0. Consumers must publish their updated dependency pins and
+put contracts before treating the new set as a resolver-compatible release.
+Core's package version changes to 1.0.1; its SPI compatibility pin remains 1.0.0.
+The released PostgreSQL fixture rejects `atomic-evidence` as expected; advertising
+and verifying that capability belongs to its independent adapter task.
 
 ## Handles and registry refresh
 

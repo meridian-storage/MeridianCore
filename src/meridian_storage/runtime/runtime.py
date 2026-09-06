@@ -16,7 +16,7 @@ from datetime import UTC, datetime, timedelta
 from types import MappingProxyType, TracebackType
 from typing import cast
 
-from meridian_storage._canonical import canonical_json_bytes
+from meridian_storage._canonical import canonical_json_bytes, sha256_fingerprint
 from meridian_storage._versions import contract_matches
 from meridian_storage.context import OperationContext, bind_context, current_context
 from meridian_storage.errors import (
@@ -1173,6 +1173,10 @@ class Meridian:
                     binding.id,
                     context.principal_ref,
                     context.tenant or "",
+                    # Scope is the effective visibility/partition context sent
+                    # to the adapter. Incidental request/trace/deadline metadata
+                    # must not prevent replay of the same scoped request.
+                    sha256_fingerprint(dict(context.scope)),
                     context.idempotency_key,
                 ),
                 operation.request_fingerprint,

@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 def test_repository_contains_one_distribution_and_one_python_package() -> None:
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
     assert project["project"]["name"] == "meridian-storage-core"
-    assert project["project"]["version"] == "1.0.0"
+    assert project["project"]["version"] == "1.0.1"
     assert project["project"]["license"] == "Apache-2.0"
     assert project["project"]["dependencies"] == []
     assert project["tool"]["hatch"]["build"]["targets"]["wheel"]["packages"] == [
@@ -42,7 +42,7 @@ def test_license_notice_and_spdx_material_are_complete() -> None:
 def test_compatibility_ledger_and_package_data_are_versioned() -> None:
     compatibility = json.loads((ROOT / "compatibility.json").read_text(encoding="utf-8"))
     assert compatibility["formatVersion"] == "meridian-compatibility.v1"
-    assert compatibility["coreVersion"] == "1.0.0"
+    assert compatibility["coreVersion"] == "1.0.1"
     assert compatibility["runtimeConfigFormat"] == "meridian-config.v1"
     force_include = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["tool"][
         "hatch"

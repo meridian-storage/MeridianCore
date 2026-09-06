@@ -5,6 +5,17 @@
 All notable changes are documented here. This project follows Semantic
 Versioning for the Python distribution and its released public contracts.
 
+## 1.0.1 - 2026-09-06
+
+- Include canonical effective scope in pre-dispatch replay identity, preventing
+  result reuse and suppressed writes across scopes with the same idempotency key.
+- Preserve the existing same-scope replay/conflict and transaction behavior.
+- Verify Catalog-owned mode fingerprints and exact version/capability rejection
+  using the unchanged public SPI and serialization envelopes.
+- Gate CI and releases on built-wheel conformance against published adapters,
+  including real PostgreSQL local and two-standby cluster profiles, explicit
+  mixed-Catalog composition, provisional results and rollback boundaries.
+
 ## 1.0.0 - 2026-08-24
 
 Initial Meridian V1 release:

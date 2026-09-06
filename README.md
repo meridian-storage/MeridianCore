@@ -100,6 +100,13 @@ Transactions require the selected adapter to advertise `atomic` and
 Binding, and request owner match; any nested failure marks the outer transaction
 for rollback. A transaction callback is never replayed by Core.
 
+Replay identity includes the complete effective scope mapping as well as Binding,
+principal, and tenant. Separate single-Catalog Operations can share an explicit
+transaction across Catalogs on the same capable Binding and request owner. Results
+are provisional until the outermost commit. See the
+[runtime contract](docs/runtime-contract.md) for caught-validation and explicit
+rollback-only behavior.
+
 ## Adapter conformance
 
 Adapter repositories run the shipped black-box conformance runner against their
@@ -139,6 +146,12 @@ pytest --cov=meridian_storage --cov-report=term-missing
 python -m build
 python scripts/verify_artifacts.py dist/*
 ```
+
+CI also installs released adapter wheels and tests the built Core wheel against
+disposable PostgreSQL local and two-standby cluster profiles. The reproducible
+runner is `bash scripts/run-postgresql-conformance.sh local|cluster <test command>`;
+see the [conformance workflow](.github/workflows/conformance.yml) for the isolated
+environment and exact published fixtures.
 
 More detail is in the [runtime contract](docs/runtime-contract.md),
 [error model](docs/error-model.md), [contribution guide](CONTRIBUTING.md), and

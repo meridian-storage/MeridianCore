@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "meridian-storage-core"
-version = "1.0.0"
+version = "1.0.1"
 description = "Meridian V1 in-process runtime, binding resolver, and adapter SPI"
 readme = "README.md"
 requires-python = ">=3.12"

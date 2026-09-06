@@ -9,7 +9,13 @@ on:
 permissions: {}
 
 jobs:
+  conformance:
+    uses: ./.github/workflows/conformance.yml
+    permissions:
+      contents: read
+
   release:
+    needs: conformance
     name: Verify and release
     runs-on: ubuntu-latest
     permissions:

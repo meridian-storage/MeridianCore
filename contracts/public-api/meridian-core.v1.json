@@ -45,7 +45,7 @@
       "subscribe"
     ]
   },
-  "coreVersion": "1.0.0",
+  "coreVersion": "1.0.1",
   "distribution": "meridian-storage-core",
   "entryPointGroups": {
     "adapters": "meridian_storage.adapters",

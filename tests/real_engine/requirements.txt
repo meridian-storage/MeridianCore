@@ -1,0 +1,8 @@
+# Released dependencies only. The CI candidate wheel replaces Core after this install.
+meridian-storage-postgresql==1.0.0
+meridian-storage-semantics==1.0.0
+meridian-storage-query==1.0.0
+meridian-storage-evidence==1.0.0
+meridian-storage-opensearch==1.0.0
+meridian-storage-clickhouse==1.0.0
+pytest>=8.3,<10
