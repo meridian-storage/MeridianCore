@@ -58,12 +58,12 @@ def main() -> None:
         "SPDXID": "SPDXRef-DOCUMENT",
         "creationInfo": {
             "created": created,
-            "creators": ["Tool: meridian-storage-core/generate_sbom.py-1.0.0"],
+            "creators": ["Tool: meridian-storage-core/generate_sbom.py-1.0.1"],
         },
         "dataLicense": "CC0-1.0",
         "documentNamespace": ("https://github.com/zephytiju/MeridianCore/sbom/" + namespace_digest),
         "files": files,
-        "name": "meridian-storage-core-1.0.0-release",
+        "name": "meridian-storage-core-1.0.1-release",
         "packages": [
             {
                 "SPDXID": "SPDXRef-Package",
@@ -72,7 +72,7 @@ def main() -> None:
                 "externalRefs": [
                     {
                         "referenceCategory": "PACKAGE-MANAGER",
-                        "referenceLocator": "pkg:pypi/meridian-storage-core@1.0.0",
+                        "referenceLocator": "pkg:pypi/meridian-storage-core@1.0.1",
                         "referenceType": "purl",
                     }
                 ],
@@ -81,7 +81,7 @@ def main() -> None:
                 "licenseDeclared": "Apache-2.0",
                 "name": "meridian-storage-core",
                 "supplier": "Organization: Meridian contributors",
-                "versionInfo": "1.0.0",
+                "versionInfo": "1.0.1",
             }
         ],
         "relationships": relationships,
