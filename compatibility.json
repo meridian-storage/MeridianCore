@@ -11,7 +11,7 @@
       "1.x"
     ]
   },
-  "coreVersion": "1.0.1",
+  "coreVersion": "1.1.0",
   "conformance": {
     "coreContractVersion": "1.0.0",
     "catalogOperationVersionFixture": "2.0.0",
@@ -54,5 +54,12 @@
     "supported": [
       "1.x"
     ]
+  },
+  "releaseValidation": {
+    "testedEngineVersions": "historical metadata; profile identities remain closed",
+    "legacyCoreVersionPin": "Core SPI contract 1.0.0, not distribution release",
+    "goldenFixtures": "contracts/adapter-capability/fixtures/release-provenance.v1.json",
+    "unlistedCombinations": "unverified until real-engine conformance",
+    "wireChanges": "none; observed server release is additive Python AdapterProbe metadata"
   }
 }

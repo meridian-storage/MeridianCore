@@ -17,6 +17,7 @@ from types import MappingProxyType, TracebackType
 from typing import cast
 
 from meridian_storage._canonical import canonical_json_bytes, sha256_fingerprint
+from meridian_storage._version import __version__
 from meridian_storage._versions import contract_matches
 from meridian_storage.context import OperationContext, bind_context, current_context
 from meridian_storage.errors import (
@@ -48,6 +49,7 @@ from meridian_storage.registry.resources import (
     ResourceDefinition,
     ResourceRef,
 )
+from meridian_storage.spi._validation import CORE_CONTRACT_VERSION, validate_binding_probe
 from meridian_storage.spi.adapters import (
     AdapterCreateContext,
     AdapterFactory,
@@ -109,7 +111,6 @@ from .operations import (
 )
 from .secrets import default_secret_resolver
 
-CORE_CONTRACT_VERSION = "1.0.0"
 TRANSACTION_OPERATION_CONTRACT = "meridian.transaction"
 TRANSACTION_OPERATION_VERSION = "1.0.0"
 
@@ -354,7 +355,7 @@ class Meridian:
                     f"Adapter {binding.adapter_id!r} returned an invalid probe",
                 )
             manifest = probe.manifest
-            self._verify_adapter_manifest(binding, manifest)
+            validate_binding_probe(binding, probe)
             self._capability_manifests[binding.id] = manifest
             evidence.append(
                 StartupEvidence(
@@ -366,6 +367,11 @@ class Meridian:
                         "adapterId": manifest.adapter_id,
                         "engineProfile": manifest.engine_profile,
                         "engineVersion": manifest.engine_version,
+                        "selectedEngineVersion": binding.engine_version,
+                        "manifestEngineVersion": manifest.engine_version,
+                        "observedEngineVersion": probe.observed_engine_version or "unavailable",
+                        "coreDistributionVersion": __version__,
+                        "coreContractVersion": CORE_CONTRACT_VERSION,
                     },
                 )
             )
@@ -798,62 +804,6 @@ class Meridian:
             binding_id: tuple(sorted(resources, key=lambda item: item.resource_ref))
             for binding_id, resources in planned.items()
         }
-
-    def _verify_adapter_manifest(
-        self,
-        binding: BindingConfig,
-        manifest: CapabilityManifest,
-    ) -> None:
-        if manifest.adapter_id != binding.adapter_id:
-            raise CompatibilityError(
-                ErrorCode.ADAPTER_CONTRACT,
-                f"Binding {binding.id!r} probed an unexpected Adapter identity",
-            )
-        try:
-            compatible = contract_matches(
-                manifest.adapter_contract_version, binding.adapter_contract
-            )
-        except ValueError as exc:
-            raise CompatibilityError(
-                ErrorCode.ADAPTER_CONTRACT,
-                f"Binding {binding.id!r} contains an invalid Adapter contract range",
-                cause=SafeCause.from_exception(exc),
-            ) from exc
-        if not compatible:
-            raise CompatibilityError(
-                ErrorCode.ADAPTER_CONTRACT,
-                f"Binding {binding.id!r} Adapter contract is incompatible",
-            )
-        if (manifest.engine_profile, manifest.engine_version) != (
-            binding.engine_profile,
-            binding.engine_version,
-        ):
-            raise CompatibilityError(
-                ErrorCode.ADAPTER_CONTRACT,
-                f"Binding {binding.id!r} probed an unexpected Engine profile or version",
-            )
-        if manifest.fingerprint != binding.required_capability_fingerprint:
-            raise CompatibilityError(
-                ErrorCode.CAPABILITY_FINGERPRINT,
-                f"Binding {binding.id!r} Capability fingerprint does not match its pin",
-            )
-        known_pins = {
-            "coreVersion": CORE_CONTRACT_VERSION,
-            "driver": manifest.descriptor.driver,
-            "adapterContract": manifest.adapter_contract_version,
-            "engineProfile": manifest.engine_profile,
-            "engineVersion": manifest.engine_version,
-        }
-        for name, expected in binding.compatibility_pins.items():
-            actual = known_pins.get(name)
-            if actual is None:
-                extension = manifest.extensions.get(name)
-                actual = extension if isinstance(extension, str) else None
-            if actual is None or actual != expected:
-                raise CompatibilityError(
-                    ErrorCode.ADAPTER_CONTRACT,
-                    f"Binding {binding.id!r} compatibility pin {name!r} is unsatisfied",
-                )
 
     @staticmethod
     def _verify_distribution(

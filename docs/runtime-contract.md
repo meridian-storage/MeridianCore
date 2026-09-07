@@ -143,3 +143,11 @@ physical evidence, and builds a candidate snapshot off-path. The atomic swap
 rejects removal of an active Resource, a change to its Schema reference, or a
 Binding move. In-flight work retains its captured revision; newly accepted work
 observes the replacement only after the swap.
+
+## Release validation in Core 1.1.0
+
+See [release provenance and gate inventory](release-validation.md). Historical
+tested-release values no longer gate manifest construction. Profile, contract,
+capability and selected deployment fingerprints remain checked. The legacy
+`coreVersion` pin still identifies Core SPI 1.0.0, while the optional
+`coreDistributionVersion` pin checks an explicit installed-release expectation.

@@ -161,3 +161,6 @@ More detail is in the [runtime contract](docs/runtime-contract.md),
 
 Copyright 2026 Meridian contributors. Licensed under the Apache License 2.0;
 see [LICENSE](LICENSE) and [NOTICE](NOTICE).
+
+Release provenance, historical tested versions, deployment integrity and retained
+contract checks are documented in [release validation](docs/release-validation.md).

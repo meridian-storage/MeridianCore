@@ -6,15 +6,15 @@ from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass
 
-from meridian_storage._versions import contract_matches
 from meridian_storage.context import OperationContext
+from meridian_storage.errors import CompatibilityError
 from meridian_storage.registry import CapabilityRequirement
 from meridian_storage.runtime.operations import Operation
 from meridian_storage.runtime.runtime import (
-    CORE_CONTRACT_VERSION,
     TRANSACTION_OPERATION_CONTRACT,
     TRANSACTION_OPERATION_VERSION,
 )
+from meridian_storage.spi._validation import validate_binding_probe
 from meridian_storage.spi.adapters import (
     AdapterCreateContext,
     AdapterFactory,
@@ -51,6 +51,7 @@ class AdapterConformanceReport:
     physical_fingerprint: str
     resource_count: int
     checks: tuple[str, ...]
+    observed_engine_version: str | None = None
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -58,6 +59,7 @@ class AdapterConformanceReport:
             "adapterContractVersion": self.adapter_contract_version,
             "engineProfile": self.engine_profile,
             "engineVersion": self.engine_version,
+            "observedEngineVersion": self.observed_engine_version,
             "capabilityFingerprint": self.capability_fingerprint,
             "physicalFingerprint": self.physical_fingerprint,
             "resourceCount": self.resource_count,
@@ -92,29 +94,10 @@ def run_adapter_conformance(target: AdapterConformanceTarget) -> AdapterConforma
         if manifest.adapter_id != target.factory.adapter_id:
             raise AssertionError("Capability manifest Adapter identity differs")
         binding = target.create_context.binding
-        if not contract_matches(manifest.adapter_contract_version, binding.adapter_contract):
-            raise AssertionError("Adapter contract is incompatible with the Binding")
-        if (manifest.engine_profile, manifest.engine_version) != (
-            binding.engine_profile,
-            binding.engine_version,
-        ):
-            raise AssertionError("Capability manifest Engine selection differs from the Binding")
-        if manifest.fingerprint != target.create_context.binding.required_capability_fingerprint:
-            raise AssertionError("Capability fingerprint differs from the Binding pin")
-        known_pins = {
-            "coreVersion": CORE_CONTRACT_VERSION,
-            "driver": manifest.descriptor.driver,
-            "adapterContract": manifest.adapter_contract_version,
-            "engineProfile": manifest.engine_profile,
-            "engineVersion": manifest.engine_version,
-        }
-        for name, expected_pin in binding.compatibility_pins.items():
-            actual_pin = known_pins.get(name)
-            if actual_pin is None:
-                extension = manifest.extensions.get(name)
-                actual_pin = extension if isinstance(extension, str) else None
-            if actual_pin != expected_pin:
-                raise AssertionError(f"compatibility pin {name!r} is unsatisfied")
+        try:
+            validate_binding_probe(binding, first_probe)
+        except CompatibilityError as exc:
+            raise AssertionError(str(exc)) from exc
         base_requirement = CapabilityRequirement(
             target.operation.operation_contract, target.operation.operation_version
         )
@@ -206,6 +189,7 @@ def run_adapter_conformance(target: AdapterConformanceTarget) -> AdapterConforma
             physical_fingerprint=first_physical.fingerprint,
             resource_count=len(target.resources),
             checks=tuple(checks),
+            observed_engine_version=first_probe.observed_engine_version,
         )
     finally:
         if opened:

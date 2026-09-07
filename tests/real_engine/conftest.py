@@ -263,3 +263,16 @@ def database():
                         sql.Identifier(raw["physicalNamespace"])
                     )
                 )
+
+
+_skipped_reports = []
+
+
+def pytest_runtest_logreport(report):
+    if report.skipped:
+        _skipped_reports.append(report.nodeid)
+
+
+def pytest_sessionfinish(session, exitstatus):
+    if os.environ.get("MERIDIAN_CORE_REQUIRE_CONFORMANCE") == "1" and _skipped_reports:
+        session.exitstatus = 1

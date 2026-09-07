@@ -70,5 +70,10 @@ fi
 
 port="$(docker port "$primary" 5432/tcp | awk -F: 'NR == 1 {print $NF}')"
 export MERIDIAN_CORE_TEST_DSN="postgresql://meridian:meridian@127.0.0.1:${port}/meridian"
+export MERIDIAN_CORE_SELECTED_IMAGE="$image"
+export MERIDIAN_CORE_IMAGE_DIGESTS="$(docker image inspect --format '{{json .RepoDigests}}' "$image")"
+export MERIDIAN_CORE_REQUIRE_CONFORMANCE=1
+# Query the disposable Engine; these observations never come from Binding config.
+"$1" scripts/record_conformance.py
 echo "Running Core conformance on ${MERIDIAN_CORE_TEST_PROFILE}"
 "$@"

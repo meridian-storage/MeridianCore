@@ -13,7 +13,7 @@ from email.parser import Parser
 from pathlib import Path, PurePosixPath
 
 PACKAGE = "meridian_storage"
-VERSION = "1.0.1"
+VERSION = "1.1.0"
 
 
 def digest(path: Path) -> str:
@@ -35,6 +35,7 @@ def verify_wheel(path: Path) -> dict[str, object]:
         names = sorted(archive.namelist())
         reject_generated(names)
         required = {
+            f"{PACKAGE}/spi/contracts/fixtures/release-provenance.v1.json",
             f"{PACKAGE}/__init__.py",
             f"{PACKAGE}/py.typed",
             f"{PACKAGE}/compatibility.json",
