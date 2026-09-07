@@ -1,0 +1,1065 @@
+{
+  "claim": "Synthetic metadata round trips only; no Engine support claim.",
+  "formatVersion": "meridian-release-provenance-fixtures.v1",
+  "manifests": [
+    {
+      "descriptorFingerprint": "sha256:ce7f3c269a6124bec63b765d9d5f90c6f543dc6bcbdb942395fda3403d0d5d24",
+      "document": {
+        "availableOperationContracts": [
+          "meridian.structured.aggregate",
+          "meridian.structured.create_resource",
+          "meridian.structured.delete",
+          "meridian.structured.get",
+          "meridian.structured.patch",
+          "meridian.structured.publish_schema",
+          "meridian.structured.put",
+          "meridian.structured.query",
+          "meridian.structured.search",
+          "meridian.structured.traverse",
+          "meridian.transaction"
+        ],
+        "descriptor": {
+          "adapterContractVersion": "1.0.0",
+          "adapterId": "test.adapter",
+          "capabilities": [
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.aggregate",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.create_resource",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.delete",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.get",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.patch",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.publish_schema",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.put",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.query",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.search",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.traverse",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "atomic",
+                "no-dirty-reads"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {},
+              "migrationBehavior": "external",
+              "operationContract": "meridian.transaction",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            }
+          ],
+          "driver": "test-driver-1.0.0",
+          "supportedEngineVersions": {
+            "test-engine": [
+              "1.0.0"
+            ]
+          }
+        },
+        "engineProfile": "test-engine",
+        "engineVersion": "1.0.0",
+        "extensions": {},
+        "formatVersion": "meridian-adapter-capabilities.v1"
+      },
+      "fingerprint": "sha256:da5ab4bc8fedee473e360a2af7602784e28ebbc883e8dfd56d9263290e4b31d3",
+      "name": "legacy-v1"
+    },
+    {
+      "descriptorFingerprint": "sha256:ce7f3c269a6124bec63b765d9d5f90c6f543dc6bcbdb942395fda3403d0d5d24",
+      "document": {
+        "availableOperationContracts": [
+          "meridian.structured.aggregate",
+          "meridian.structured.create_resource",
+          "meridian.structured.delete",
+          "meridian.structured.get",
+          "meridian.structured.patch",
+          "meridian.structured.publish_schema",
+          "meridian.structured.put",
+          "meridian.structured.query",
+          "meridian.structured.search",
+          "meridian.structured.traverse",
+          "meridian.transaction"
+        ],
+        "descriptor": {
+          "adapterContractVersion": "1.0.0",
+          "adapterId": "test.adapter",
+          "capabilities": [
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.aggregate",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.create_resource",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.delete",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.get",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.patch",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.publish_schema",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.put",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.query",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.search",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.traverse",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "atomic",
+                "no-dirty-reads"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {},
+              "migrationBehavior": "external",
+              "operationContract": "meridian.transaction",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            }
+          ],
+          "driver": "test-driver-1.0.0",
+          "supportedEngineVersions": {
+            "test-engine": [
+              "1.0.0"
+            ]
+          }
+        },
+        "engineProfile": "test-engine",
+        "engineVersion": "99.12.4",
+        "extensions": {},
+        "formatVersion": "meridian-adapter-capabilities.v1"
+      },
+      "fingerprint": "sha256:0e6774947ed98cd62ec118bd254cb84964727c35101c57153a4dae3b147d7589",
+      "name": "unlisted-release"
+    },
+    {
+      "descriptorFingerprint": "sha256:1d2f0dad0192422767500c9f91a0b26411229e74e3f0973a46ad06576b108f36",
+      "document": {
+        "availableOperationContracts": [
+          "meridian.structured.aggregate",
+          "meridian.structured.create_resource",
+          "meridian.structured.delete",
+          "meridian.structured.get",
+          "meridian.structured.patch",
+          "meridian.structured.publish_schema",
+          "meridian.structured.put",
+          "meridian.structured.query",
+          "meridian.structured.search",
+          "meridian.structured.traverse",
+          "meridian.transaction"
+        ],
+        "descriptor": {
+          "adapterContractVersion": "1.0.0",
+          "adapterId": "test.adapter",
+          "capabilities": [
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.aggregate",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.create_resource",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.delete",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.get",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.patch",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.publish_schema",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.put",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.query",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.search",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.traverse",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "atomic",
+                "no-dirty-reads"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {},
+              "migrationBehavior": "external",
+              "operationContract": "meridian.transaction",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            }
+          ],
+          "driver": "test-driver-1.0.0",
+          "supportedEngineVersions": {
+            "test-engine": [
+              "2006-03-01"
+            ]
+          }
+        },
+        "engineProfile": "test-engine",
+        "engineVersion": "2006-03-01",
+        "extensions": {},
+        "formatVersion": "meridian-adapter-capabilities.v1"
+      },
+      "fingerprint": "sha256:fca60659eac59e2cf8f0cc32d47ff7e511740fd61d8b4417cacb287ed0aa0746",
+      "name": "legacy-s3-protocol"
+    },
+    {
+      "descriptorFingerprint": "sha256:590fec04f7442caab953f6ec7aa35fe9fd3b51f4f86b1e5dc5107dbc2bb667db",
+      "document": {
+        "availableOperationContracts": [
+          "meridian.structured.aggregate",
+          "meridian.structured.create_resource",
+          "meridian.structured.delete",
+          "meridian.structured.get",
+          "meridian.structured.patch",
+          "meridian.structured.publish_schema",
+          "meridian.structured.put",
+          "meridian.structured.query",
+          "meridian.structured.search",
+          "meridian.structured.traverse",
+          "meridian.transaction"
+        ],
+        "descriptor": {
+          "adapterContractVersion": "1.0.0",
+          "adapterId": "test.adapter",
+          "capabilities": [
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.aggregate",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.create_resource",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.delete",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.get",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.patch",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.publish_schema",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.put",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.query",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.search",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "opaque",
+              "extensions": {},
+              "guarantees": [
+                "bounded"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {
+                "maxResultBytes": 10000000
+              },
+              "migrationBehavior": "external",
+              "operationContract": "meridian.structured.traverse",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            },
+            {
+              "cursorBehavior": "none",
+              "extensions": {},
+              "guarantees": [
+                "atomic",
+                "no-dirty-reads"
+              ],
+              "healthProbes": [
+                "authenticated"
+              ],
+              "limits": {},
+              "migrationBehavior": "external",
+              "operationContract": "meridian.transaction",
+              "operationVersions": [
+                "1.0.0"
+              ]
+            }
+          ],
+          "driver": "test-driver-1.0.0",
+          "supportedEngineVersions": {
+            "test-engine": [
+              "1.1.1"
+            ]
+          }
+        },
+        "engineProfile": "test-engine",
+        "engineVersion": "1.1.1",
+        "extensions": {},
+        "formatVersion": "meridian-adapter-capabilities.v1"
+      },
+      "fingerprint": "sha256:5647e652376424dd0db319079f2c618db8890725e358d36388a4e5948962f0fd",
+      "name": "legacy-oci-protocol"
+    }
+  ],
+  "runtimeConfig": {
+    "bindings": [
+      {
+        "adapterContract": "1.x",
+        "adapterId": "test.adapter",
+        "client": {
+          "acquireTimeoutMs": 1000,
+          "idleTimeoutMs": 1000,
+          "iteratorLifetimeMs": 5000,
+          "maxResultBytes": 1024,
+          "maxSize": 4,
+          "minSize": 0,
+          "operationTimeoutMs": 5000
+        },
+        "compatibilityPins": {
+          "coreVersion": "1.0.0",
+          "driver": "test-driver-1.0.0"
+        },
+        "endpoint": "memory://logical-endpoint",
+        "engineProfile": "test-engine",
+        "engineVersion": "1.0.0",
+        "extensions": {},
+        "id": "primary",
+        "identityRef": {
+          "provider": "test",
+          "reference": "opaque-identity"
+        },
+        "physicalNamespace": "test-namespace",
+        "requiredCapabilityFingerprint": "sha256:da5ab4bc8fedee473e360a2af7602784e28ebbc883e8dfd56d9263290e4b31d3",
+        "requiredPhysicalFingerprint": "sha256:c768f92fafc3afeee06621ac6d759f9f1a48f9d604197a6d931f48bfcd42d758",
+        "secretRef": {
+          "provider": "test",
+          "reference": "opaque-secret"
+        },
+        "serviceRef": null,
+        "settings": {},
+        "tls": {
+          "caRef": null,
+          "clientCertificateRef": null,
+          "mode": "disabled",
+          "serverName": null
+        }
+      }
+    ],
+    "catalogs": {
+      "extensions": {},
+      "providers": [
+        {
+          "contract": "1.x",
+          "name": "structured",
+          "package": "test-catalog",
+          "requiredFingerprint": "sha256:f40d08f6859241c50bc582d5392def8ac03735acc38b8d048ceb8259a0472eb0"
+        }
+      ]
+    },
+    "extensions": {},
+    "formatVersion": "meridian-config.v1",
+    "placements": [
+      {
+        "bindingId": "primary",
+        "extensions": {},
+        "id": "primary-placement",
+        "selector": {
+          "catalog": null,
+          "labels": {},
+          "resources": [
+            {
+              "catalog": "structured",
+              "name": "cases",
+              "namespace": "investigation"
+            }
+          ]
+        }
+      }
+    ],
+    "profile": "test",
+    "resources": {
+      "extensions": {},
+      "pins": [
+        {
+          "providerId": "test.schemas",
+          "ref": {
+            "catalog": "structured",
+            "name": "cases",
+            "namespace": "investigation"
+          },
+          "requiredFingerprint": "sha256:7cc7c6124eb02c28beea33b77b436ad40222c087c408488053889e9aa7338641"
+        }
+      ]
+    },
+    "schemas": {
+      "extensions": {},
+      "live": {
+        "enabled": false,
+        "providerId": null,
+        "required": false
+      },
+      "providers": [
+        {
+          "contract": "1.x",
+          "id": "test.schemas",
+          "package": "test-schemas",
+          "requiredFingerprint": "sha256:06933905f412fc189e3fdcf01c100935c96a40549a4bd94679765d138d475803"
+        }
+      ]
+    },
+    "telemetry": {
+      "attributes": {},
+      "enabled": false,
+      "extensions": {},
+      "serviceName": null,
+      "suppressExporterRecursion": true
+    },
+    "validation": {
+      "defaultOperationTimeoutMs": 5000,
+      "idempotencyCacheEntries": 64,
+      "requirePhysicalFingerprints": true,
+      "retry": {
+        "baseDelayMs": 0,
+        "jitterRatio": 0.0,
+        "maxAttempts": 3,
+        "maxDelayMs": 0
+      },
+      "strict": true
+    }
+  },
+  "runtimeConfigFingerprint": "sha256:358bf38e1025baa523c93285f4693d00d6370033ed0f1e16c7a35f9ce02d9603"
+}

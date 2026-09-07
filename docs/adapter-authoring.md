@@ -28,9 +28,14 @@ support. Core calls transactional methods only after validating the versioned
 transaction Capability and its guarantees.
 
 `probe()` is authenticated and returns an immutable `CapabilityManifest` for
-the selected engine profile and version. The descriptor declares:
+the selected engine profile and version. The manifest version retains its V1
+profile meaning; it is not by itself server-release evidence. Set the optional
+`AdapterProbe.observed_engine_version` only from an authenticated provider
+observation, and leave it `None` when unavailable. S3 `2006-03-01` and OCI
+`1.1.1` remain protocol identifiers, never registry/server software releases.
+The descriptor declares:
 
-- stable adapter contract, driver, and supported engine versions;
+- stable adapter contract, driver, profile identities, and historical tested releases;
 - each supported versioned Operation contract;
 - guarantees and numeric limits per Operation;
 - cursor, migration, and health-probe behavior; and

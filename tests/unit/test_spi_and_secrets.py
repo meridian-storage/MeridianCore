@@ -82,7 +82,7 @@ def test_capability_manifest_and_descriptor_are_deterministic() -> None:
     assert manifest.descriptor.capability_for("missing") is None
     assert manifest.to_dict()["engineProfile"] == "test-engine"
     with pytest.raises(ValueError, match="not advertised"):
-        CapabilityManifest(manifest.descriptor, "test-engine", "2.0.0")
+        CapabilityManifest(manifest.descriptor, "unknown-engine", "2.0.0")
     with pytest.raises(ValueError, match="absent"):
         CapabilityManifest(
             manifest.descriptor,

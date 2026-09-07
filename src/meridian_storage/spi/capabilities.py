@@ -104,7 +104,12 @@ class OperationCapability:
 
 @dataclass(frozen=True, slots=True)
 class AdapterDescriptor:
-    """Stable Adapter identity, SPI range, driver, engines, and capabilities."""
+    """Stable identity, SPI, profiles, historical tested releases and capabilities.
+
+    ``supported_engine_versions`` keeps its V1 wire name and canonical content.
+    Its keys identify supported profiles; its values record tested releases,
+    not a runtime release allowlist. Legacy S3/OCI values identify protocols.
+    """
 
     adapter_id: str
     adapter_contract_version: str
@@ -160,7 +165,11 @@ class AdapterDescriptor:
 
 @dataclass(frozen=True, slots=True)
 class CapabilityManifest:
-    """Authenticated probe result for one selected Engine profile and version."""
+    """Capability document for a profile and its declared Engine version.
+
+    The version retains its profile-defined V1 meaning, including legacy S3/OCI
+    protocol identifiers. It alone is not proof of an observed server release.
+    """
 
     descriptor: AdapterDescriptor
     engine_profile: str
@@ -174,9 +183,8 @@ class CapabilityManifest:
             raise ValueError(f"format_version must be {CAPABILITY_FORMAT_VERSION!r}")
         profile = _nonempty(self.engine_profile, "Engine profile")
         version = _nonempty(self.engine_version, "Engine version")
-        supported = self.descriptor.supported_engine_versions.get(profile, ())
-        if version not in supported:
-            raise ValueError("probed Engine version is not advertised by the Adapter descriptor")
+        if profile not in self.descriptor.supported_engine_versions:
+            raise ValueError("Engine profile is not advertised by the Adapter descriptor")
         available = self.available_operation_contracts or tuple(
             item.operation_contract for item in self.descriptor.capabilities
         )

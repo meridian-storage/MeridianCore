@@ -15,3 +15,8 @@ dist/
 htmlcov/
 release-evidence/
 work/
+
+.candidate/
+.conformance-env/
+conformance-evidence/
+conformance.xml

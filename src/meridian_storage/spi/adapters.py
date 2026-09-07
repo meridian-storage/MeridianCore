@@ -97,12 +97,22 @@ class AdapterCreateContext:
 
 @dataclass(frozen=True, slots=True)
 class AdapterProbe:
+    """Authenticated capabilities with optional actual server-release observation.
+
+    Leave ``observed_engine_version`` unavailable when the provider cannot
+    discover it. Never fill it from Binding configuration or a protocol label.
+    This additive Python SPI field does not change the V1 manifest wire bytes.
+    """
+
     manifest: CapabilityManifest
     evidence: Mapping[str, str] = field(default_factory=dict)
+    observed_engine_version: str | None = None
 
     def __post_init__(self) -> None:
         if not isinstance(self.manifest, CapabilityManifest):
             raise ValueError("Adapter probe manifest must be a CapabilityManifest")
+        if self.observed_engine_version is not None:
+            _safe_string(self.observed_engine_version, "observed Engine version", 256)
         object.__setattr__(
             self,
             "evidence",

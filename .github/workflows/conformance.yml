@@ -29,11 +29,12 @@ jobs:
           python -m build --no-isolation --wheel --outdir .candidate
       - name: Install published compatibility fixtures and candidate
         run: |
+          mkdir -p conformance-evidence
           python -m venv .conformance-env
-          .conformance-env/bin/python -m pip install --disable-pip-version-check -r tests/real_engine/requirements.txt
+          .conformance-env/bin/python -m pip install --disable-pip-version-check -r tests/real_engine/requirements.txt --report conformance-evidence/dependency-install.json
           # Compatibility experiment: only Core is replaced. Downstream release
           # pins remain unchanged and must be repinned by their owning tasks.
-          .conformance-env/bin/python -m pip install --no-deps --force-reinstall .candidate/*.whl
+          .conformance-env/bin/python -m pip install --no-deps --force-reinstall .candidate/*.whl --report conformance-evidence/candidate-install.json
           .conformance-env/bin/python -c 'import meridian_storage; assert "site-packages" in meridian_storage.__file__'
       - name: Run real engine and published descriptor conformance
         run: bash scripts/run-postgresql-conformance.sh '${{ matrix.profile }}' .conformance-env/bin/python -m pytest tests/real_engine -q --junitxml=conformance.xml
@@ -42,5 +43,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: core-postgresql-${{ matrix.profile }}-${{ github.sha }}
-          path: conformance.xml
+          path: |
+            conformance.xml
+            conformance-evidence/
           if-no-files-found: error

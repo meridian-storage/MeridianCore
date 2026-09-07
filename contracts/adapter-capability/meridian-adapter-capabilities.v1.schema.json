@@ -30,6 +30,7 @@
         "adapterContractVersion": { "$ref": "#/$defs/name" },
         "driver": { "$ref": "#/$defs/name" },
         "supportedEngineVersions": {
+          "description": "Profile keys are identities. Values are historical tested-release metadata, not a release allowlist; legacy S3/OCI values retain their protocol meaning.",
           "type": "object",
           "minProperties": 1,
           "additionalProperties": {
@@ -47,7 +48,7 @@
       }
     },
     "engineProfile": { "$ref": "#/$defs/name" },
-    "engineVersion": { "$ref": "#/$defs/name" },
+    "engineVersion": { "$ref": "#/$defs/name", "description": "Profile-defined declared version; legacy S3/OCI protocol identifier. Not independently observed server-release evidence." },
     "availableOperationContracts": {
       "type": "array",
       "minItems": 1,

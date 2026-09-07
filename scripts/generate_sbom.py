@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import json
 import os
+import tomllib
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -21,6 +22,9 @@ def main() -> None:
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("artifacts", nargs="+", type=Path)
     arguments = parser.parse_args()
+    version = tomllib.loads((Path(__file__).resolve().parents[1] / "pyproject.toml").read_text())[
+        "project"
+    ]["version"]
     artifacts = sorted(arguments.artifacts, key=lambda path: path.name)
     checksums = {path.name: sha256(path) for path in artifacts}
     namespace_digest = hashlib.sha256(
@@ -58,12 +62,12 @@ def main() -> None:
         "SPDXID": "SPDXRef-DOCUMENT",
         "creationInfo": {
             "created": created,
-            "creators": ["Tool: meridian-storage-core/generate_sbom.py-1.0.1"],
+            "creators": [f"Tool: meridian-storage-core/generate_sbom.py-{version}"],
         },
         "dataLicense": "CC0-1.0",
         "documentNamespace": ("https://github.com/zephytiju/MeridianCore/sbom/" + namespace_digest),
         "files": files,
-        "name": "meridian-storage-core-1.0.1-release",
+        "name": f"meridian-storage-core-{version}-release",
         "packages": [
             {
                 "SPDXID": "SPDXRef-Package",
@@ -72,7 +76,7 @@ def main() -> None:
                 "externalRefs": [
                     {
                         "referenceCategory": "PACKAGE-MANAGER",
-                        "referenceLocator": "pkg:pypi/meridian-storage-core@1.0.1",
+                        "referenceLocator": f"pkg:pypi/meridian-storage-core@{version}",
                         "referenceType": "purl",
                     }
                 ],
@@ -81,7 +85,7 @@ def main() -> None:
                 "licenseDeclared": "Apache-2.0",
                 "name": "meridian-storage-core",
                 "supplier": "Organization: Meridian contributors",
-                "versionInfo": "1.0.1",
+                "versionInfo": version,
             }
         ],
         "relationships": relationships,

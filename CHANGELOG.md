@@ -5,6 +5,19 @@
 All notable changes are documented here. This project follows Semantic
 Versioning for the Python distribution and its released public contracts.
 
+## 1.1.0 - 2026-09-07
+
+- Treat descriptor tested-release tables as historical metadata, preserving
+  profile identity, operation contracts and canonical V1 fingerprints.
+- Share contract and deployment-lock validation between runtime and the public
+  conformance runner. Keep legacy coreVersion as the SPI contract; expose
+  explicit installed-distribution and authenticated-observation pins.
+- Add optional authenticated server-release provenance without changing V1
+  manifest/config wire fields or inventing observations for legacy adapters.
+- Ship canonical descriptor/config/manifest fixtures and classify every Core
+  gate. Capture real PostgreSQL local/cluster image digests, observed versions,
+  package download hashes and test results in release conformance artifacts.
+
 ## 1.0.1 - 2026-09-06
 
 - Include canonical effective scope in pre-dispatch replay identity, preventing
