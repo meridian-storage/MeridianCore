@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: Apache-2.0
+# Exact public closure under test; installation must use normal dependency resolution.
+meridian-plugin-config-artifact==1.1.1
+meridian-plugin-cost==2.0.1
+meridian-plugin-observability==1.0.3
+meridian-plugin-usage==2.0.2
+meridian-storage-clickhouse==1.1.1
+meridian-storage-core==1.1.0
+meridian-storage-evidence==1.0.2
+meridian-storage-kafka==1.1.0
+meridian-storage-object-common==1.0.3
+meridian-storage-oci==1.1.0
+meridian-storage-opensearch==1.1.0
+meridian-storage-postgresql==2.3.1
+meridian-storage-projection==1.0.3
+meridian-storage-query==1.0.3
+meridian-storage-s3==1.0.4
+meridian-storage-semantics==2.1.0
+meridian-storage-streaming==1.0.1
+meridian-storage-valkey==1.1.0
