@@ -1,0 +1,250 @@
+{
+  "categories": {
+    "contract-or-feature": "SPI, operation, guarantee, limits, physical Schema, placement, worker specification and helper requirements remain enforced.",
+    "deployment-integrity": "Exact selected lock, image and canonical fingerprint checks detect artifact/identity drift.",
+    "provider-constraint-and-contract": "Allowed provider topology, retention/persistence, authority, credentials/TLS, layout and required capabilities remain enforced.",
+    "release-metadata": "Selected package/server releases and tested examples are provenance, never universal compatibility evidence.",
+    "release-metadata-and-contract": "Historical engine releases/example pins are metadata; profile identities, modes/topologies, catalog/operation/guarantee/limit and provider constraints remain closed required contracts.",
+    "serialized-contract-or-constant": "Closed catalog names, formats, default policies, error/stage identifiers remain versioned contracts."
+  },
+  "evidence": {
+    "current": "Fresh public original16, all-family1014, configured-limits1688, append-layout2988, real packaged-host39 tests per PostgreSQL version.",
+    "historicalFailure": "Original Constructs1.4.0 failure preserved at c3ab7af660bec7b6451bcf2886be50a58ce7a8b2 and native attachment a654c7e2-4e13-4f35-ab35-14c7f266dafd.",
+    "operational": "evidence/upstream-records.zip: A3/A4 actual local engine/infra recovery and A5 current plans plus Collector E2E; version scopes retained.",
+    "plugins": "evidence/upstream-records.zip: shared-lock public Evidence, Usage, Cost, ConfigArtifact and Observability regressions; unchanged implementations retain their original recorded lock."
+  },
+  "exports": {
+    "EngineBinding": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "ExternalEngine": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "ManagedEngine": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "MeridianConstructError": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "MeridianDeployment": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "MeridianLifecycleJob": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "MeridianOtelCollector": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "adapterPackages": {
+      "classification": "release-metadata"
+    },
+    "assertBoundedText": {
+      "classification": "deployment-integrity"
+    },
+    "assertDigestPinnedImage": {
+      "classification": "deployment-integrity"
+    },
+    "assertFingerprint": {
+      "classification": "deployment-integrity"
+    },
+    "assertIdentifier": {
+      "classification": "deployment-integrity"
+    },
+    "backupJob": {
+      "classification": "contract-or-feature"
+    },
+    "cacheWarmJob": {
+      "classification": "contract-or-feature"
+    },
+    "canonicalJson": {
+      "classification": "deployment-integrity"
+    },
+    "catalogNames": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "catalogPlacementRules": {
+      "classification": "contract-or-feature"
+    },
+    "clusterAcceptanceStages": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "collectorEnvironment": {
+      "classification": "contract-or-feature"
+    },
+    "compatibilityContract": {
+      "classification": "contract-or-feature"
+    },
+    "compatibilityFingerprint": {
+      "classification": "deployment-integrity"
+    },
+    "configEnvironmentVariable": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "configFormatVersion": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "conformanceEvidence": {
+      "classification": "contract-or-feature"
+    },
+    "constructErrorCodes": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "createClickHouseTelemetryPlan": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "createLifecycleJobSpec": {
+      "classification": "contract-or-feature"
+    },
+    "createOtelCollectorSpec": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "createTelemetryCapability": {
+      "classification": "contract-or-feature"
+    },
+    "defaultClientPolicy": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "defaultEngineProfiles": {
+      "classification": "release-metadata-and-contract"
+    },
+    "defaultValidationPolicy": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "diffPlans": {
+      "classification": "contract-or-feature"
+    },
+    "disabledTelemetryCapability": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "durableProjectionJob": {
+      "classification": "contract-or-feature"
+    },
+    "engineProfiles": {
+      "classification": "release-metadata-and-contract"
+    },
+    "fingerprint": {
+      "classification": "deployment-integrity"
+    },
+    "getEngineProfile": {
+      "classification": "release-metadata-and-contract"
+    },
+    "localClusterProfiles": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "migrationJob": {
+      "classification": "contract-or-feature"
+    },
+    "normalizeJson": {
+      "classification": "deployment-integrity"
+    },
+    "onePrimaryDefaults": {
+      "classification": "release-metadata-and-contract"
+    },
+    "packagePins": {
+      "classification": "release-metadata"
+    },
+    "parseResourceSelector": {
+      "classification": "deployment-integrity"
+    },
+    "planDeployment": {
+      "classification": "contract-or-feature"
+    },
+    "profileEnvironmentVariable": {
+      "classification": "serialized-contract-or-constant"
+    },
+    "projectionCycleBudgetMs": {
+      "classification": "contract-or-feature"
+    },
+    "projectionHostFiles": {
+      "classification": "contract-or-feature",
+      "notes": "Packaged requirements are historical recipes. Selected lock integrity and required host APIs/specs are enforced on the independently installed public closure."
+    },
+    "projectionJob": {
+      "classification": "contract-or-feature"
+    },
+    "projectionPackagePins": {
+      "classification": "release-metadata"
+    },
+    "rejectSecretMaterial": {
+      "classification": "deployment-integrity"
+    },
+    "resolvePlacementBindings": {
+      "classification": "contract-or-feature"
+    },
+    "resourceDefinitionFingerprint": {
+      "classification": "deployment-integrity"
+    },
+    "resourceSelectorKey": {
+      "classification": "deployment-integrity"
+    },
+    "restoreJob": {
+      "classification": "contract-or-feature"
+    },
+    "runDeploymentConformance": {
+      "classification": "contract-or-feature"
+    },
+    "runLocalClusterConformance": {
+      "classification": "contract-or-feature",
+      "notes": "Mock stage harnesses prove only validation behavior. Actual recovery is established separately by digest-pinned engine records."
+    },
+    "runtimeConfigContract": {
+      "classification": "contract-or-feature"
+    },
+    "runtimeEnvironment": {
+      "classification": "contract-or-feature"
+    },
+    "streamingBootstrapJob": {
+      "classification": "contract-or-feature"
+    },
+    "telemetryFields": {
+      "classification": "contract-or-feature"
+    },
+    "validateBindingMetadata": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "validateClientPolicy": {
+      "classification": "contract-or-feature"
+    },
+    "validateEngineConnection": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "validateEngineVersion": {
+      "classification": "contract-or-feature",
+      "notes": "Server implementation releases are provenance; S3 2006-03-01 and OCI 1.1.1 remain actual protocol constraints."
+    },
+    "validateOpaqueReference": {
+      "classification": "deployment-integrity"
+    },
+    "validatePackagePins": {
+      "classification": "deployment-integrity"
+    },
+    "validatePlacementSelector": {
+      "classification": "deployment-integrity"
+    },
+    "validateResourceRequirement": {
+      "classification": "contract-or-feature"
+    },
+    "validateResourceSelector": {
+      "classification": "deployment-integrity"
+    },
+    "validateRuntimeConfig": {
+      "classification": "contract-or-feature"
+    },
+    "validateTelemetryCapability": {
+      "classification": "contract-or-feature"
+    },
+    "validateTlsPolicy": {
+      "classification": "provider-constraint-and-contract"
+    },
+    "validateValidationPolicy": {
+      "classification": "contract-or-feature"
+    },
+    "validationJob": {
+      "classification": "contract-or-feature"
+    },
+    "version": {
+      "classification": "release-metadata"
+    }
+  },
+  "formatVersion": "meridian-core-closure-gates.v1"
+}

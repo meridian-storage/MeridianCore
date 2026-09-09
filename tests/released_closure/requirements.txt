@@ -4,7 +4,7 @@ meridian-plugin-config-artifact==1.1.1
 meridian-plugin-cost==2.0.1
 meridian-plugin-observability==1.0.3
 meridian-plugin-usage==2.0.2
-meridian-storage-clickhouse==1.1.1
+meridian-storage-clickhouse==1.1.3
 meridian-storage-core==1.1.0
 meridian-storage-evidence==1.0.2
 meridian-storage-kafka==1.1.0

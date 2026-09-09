@@ -1,0 +1,808 @@
+{
+  "files": {
+    "attempt3/README.md": {
+      "bytes": 12243,
+      "member": "README.md",
+      "sha256": "dfe7cd09c3df639990f6ad1006dd7b5d54a40288b2a4c16d8fe394d64b3b7038",
+      "source": "attempt3"
+    },
+    "attempt3/historical-reuse-comparison.json": {
+      "bytes": 1924,
+      "member": "historical-reuse-comparison.json",
+      "sha256": "9f0a4b5c9811424553068398700f082c647a8e338dd557c55f72462f27113a49",
+      "source": "attempt3"
+    },
+    "attempt3/image-locks.json": {
+      "bytes": 847,
+      "member": "image-locks.json",
+      "sha256": "d2a78a69eafcaa2b3dd460204cc20a388181ca7d7bd02099bc623bf6e44456bd",
+      "source": "attempt3"
+    },
+    "attempt3/observed-image-locks.json": {
+      "bytes": 11603,
+      "member": "observed-image-locks.json",
+      "sha256": "ebcbd84e40941cdfdeb6244ca397d577df3fcc1da6a821efd91424b93b7aa8a5",
+      "source": "attempt3"
+    },
+    "attempt3/public-requirements.lock": {
+      "bytes": 83129,
+      "member": "public-requirements.lock",
+      "sha256": "b9423c35bb9845a5d86df6702f7a361e940dc04edae765f9c5522dd612586019",
+      "source": "attempt3"
+    },
+    "attempt3/routes/clickhouse-cluster-read/results.json": {
+      "bytes": 44774,
+      "member": "routes/clickhouse-cluster-read/results.json",
+      "sha256": "c528ee8330a3af8bce8b2f36dba89cdda3b670aee83c0e4286c5768eec889c6b",
+      "source": "attempt3"
+    },
+    "attempt3/routes/clickhouse-single-harness-contract-pin-failure/results.json": {
+      "bytes": 5324,
+      "member": "routes/clickhouse-single-harness-contract-pin-failure/results.json",
+      "sha256": "b73c5b3d5b006f98efbf15b58ec96696a57ffba7bf7e2771dcbde1e66cbccefb",
+      "source": "attempt3"
+    },
+    "attempt3/routes/clickhouse-single-read/results.json": {
+      "bytes": 44444,
+      "member": "routes/clickhouse-single-read/results.json",
+      "sha256": "07478a9e5b73e7c3bd1c8176d23c0e0667dd7a5d59f882e5aac023f712a3b574",
+      "source": "attempt3"
+    },
+    "attempt3/routes/clickhouse-single/results.json": {
+      "bytes": 5324,
+      "member": "routes/clickhouse-single/results.json",
+      "sha256": "7418e2de116ded3f79e4a34c22700cca2e003af9a5e8191d5986bcc646a46c92",
+      "source": "attempt3"
+    },
+    "attempt3/routes/kafka-cluster/results.json": {
+      "bytes": 47053,
+      "member": "routes/kafka-cluster/results.json",
+      "sha256": "f4cdfc3fd690d4d760b283aabf31acd538d1e7888053b48070ef1c906bc82be0",
+      "source": "attempt3"
+    },
+    "attempt3/routes/kafka-test-harness-empty-requirement-failure/results.json": {
+      "bytes": 2131,
+      "member": "routes/kafka-test-harness-empty-requirement-failure/results.json",
+      "sha256": "0785028eb701212514db3c4ea35492d1e9489acb6d100a02476cc7e874622273",
+      "source": "attempt3"
+    },
+    "attempt3/routes/kafka-test-harness-endpoint-selection-failure/results.json": {
+      "bytes": 2117,
+      "member": "routes/kafka-test-harness-endpoint-selection-failure/results.json",
+      "sha256": "00c818ab38d97c90fc956f9f621549f18bcc7e4ceb2cc82ff153bd4fa375ee3f",
+      "source": "attempt3"
+    },
+    "attempt3/routes/kafka-test/results.json": {
+      "bytes": 47097,
+      "member": "routes/kafka-test/results.json",
+      "sha256": "020bca6d343b5d4637b9b3b32522345c61edd3047717dde90ad3ae801dac64cf",
+      "source": "attempt3"
+    },
+    "attempt3/routes/objects-cluster/results.json": {
+      "bytes": 48459,
+      "member": "routes/objects-cluster/results.json",
+      "sha256": "5fb0bca3d6f141d3f1b3551ba06723363e6f4d1eec8820e9beb2263aacc50e5e",
+      "source": "attempt3"
+    },
+    "attempt3/routes/objects-harness-export-failure/results.json": {
+      "bytes": 870,
+      "member": "routes/objects-harness-export-failure/results.json",
+      "sha256": "eaece9d8c89f81e45e7bd0ad5b4c8a3a0cfedf6e694bcb0447ed59f7280f3349",
+      "source": "attempt3"
+    },
+    "attempt3/routes/objects-harness-import-failure/results.json": {
+      "bytes": 870,
+      "member": "routes/objects-harness-import-failure/results.json",
+      "sha256": "69c97d9fa88d8888dcc3016968d50e2185c497e509878970ac92866203138d62",
+      "source": "attempt3"
+    },
+    "attempt3/routes/objects-harness-policy-failure/results.json": {
+      "bytes": 1989,
+      "member": "routes/objects-harness-policy-failure/results.json",
+      "sha256": "06129bebd090992548a3bebfb082f45d9878d03d77dd5938f951a75150329289",
+      "source": "attempt3"
+    },
+    "attempt3/routes/objects-harness-serialization-failure/results.json": {
+      "bytes": 2780,
+      "member": "routes/objects-harness-serialization-failure/results.json",
+      "sha256": "091e806dff9c81692fb00ee328599e899aef37baf87b230867f00c07fe302402",
+      "source": "attempt3"
+    },
+    "attempt3/routes/objects/results.json": {
+      "bytes": 48377,
+      "member": "routes/objects/results.json",
+      "sha256": "1b14ee502fc99ebcfc2404c1ca5bfb570778cb252593d05c02e8ef2350258d53",
+      "source": "attempt3"
+    },
+    "attempt3/routes/opensearch-cluster/results.json": {
+      "bytes": 41460,
+      "member": "routes/opensearch-cluster/results.json",
+      "sha256": "3737a728756c157f56fab0f4b832cf4fc9bee3ca561b622e2e2968ad7fe7f0e8",
+      "source": "attempt3"
+    },
+    "attempt3/routes/opensearch-single-harness-client-timeout-failure/results.json": {
+      "bytes": 900,
+      "member": "routes/opensearch-single-harness-client-timeout-failure/results.json",
+      "sha256": "162b07d75c946eed6e558fc21e330a995e54cc00817e5ed69781020542141902",
+      "source": "attempt3"
+    },
+    "attempt3/routes/opensearch-single/results.json": {
+      "bytes": 41448,
+      "member": "routes/opensearch-single/results.json",
+      "sha256": "82999ef439d89bca55d1003c8e266d0c9f6372a412ff99ae422b2d78327cebc8",
+      "source": "attempt3"
+    },
+    "attempt3/routes/postgresql-cluster/results.json": {
+      "bytes": 46362,
+      "member": "routes/postgresql-cluster/results.json",
+      "sha256": "7116474f69c9fbf092bc3baffa57d0eac00aae5c5d2a839221ea02dc0c950f81",
+      "source": "attempt3"
+    },
+    "attempt3/routes/postgresql-single-harness-bootstrap-pin-failure/results.json": {
+      "bytes": 900,
+      "member": "routes/postgresql-single-harness-bootstrap-pin-failure/results.json",
+      "sha256": "6efa5cddc7dacf7df7c9876f85ee1bd937c9afcff9144cc628cb1a3ab0c9dde6",
+      "source": "attempt3"
+    },
+    "attempt3/routes/postgresql-single-harness-job-cwd-failure/results.json": {
+      "bytes": 17368,
+      "member": "routes/postgresql-single-harness-job-cwd-failure/results.json",
+      "sha256": "91d9ee5e7f77898de245de4a22a31f5c80f96254a94e55254d23d09de679c6a2",
+      "source": "attempt3"
+    },
+    "attempt3/routes/postgresql-single-harness-tls-endpoint-failure/results.json": {
+      "bytes": 900,
+      "member": "routes/postgresql-single-harness-tls-endpoint-failure/results.json",
+      "sha256": "bdc3de4bcd13d7efdf15cdf90923b706ce0a0f66401dc4203b7b2ab90db7e1af",
+      "source": "attempt3"
+    },
+    "attempt3/routes/postgresql-single-harness-tuple-failure/results.json": {
+      "bytes": 900,
+      "member": "routes/postgresql-single-harness-tuple-failure/results.json",
+      "sha256": "55ffd28a0d1926a1cf215796f2302c1d1e1f5495d6e03f743cf298130f354688",
+      "source": "attempt3"
+    },
+    "attempt3/routes/postgresql-single/results.json": {
+      "bytes": 46620,
+      "member": "routes/postgresql-single/results.json",
+      "sha256": "886fe8bb99e0734d25be6284e47a5b506d07d1a695d65966f578f54ff261eb39",
+      "source": "attempt3"
+    },
+    "attempt3/routes/valkey-sentinel/results.json": {
+      "bytes": 40132,
+      "member": "routes/valkey-sentinel/results.json",
+      "sha256": "d4af2162aeb20e4491d57a69c794780b9a35c192ed17f5c3bf70c19db51aff40",
+      "source": "attempt3"
+    },
+    "attempt3/routes/valkey-single-harness-resource-json-failure/results.json": {
+      "bytes": 2538,
+      "member": "routes/valkey-single-harness-resource-json-failure/results.json",
+      "sha256": "cdb74b793a112a1d5eda2f7a2d16595f70e00139a69e02d028c912ee35a14095",
+      "source": "attempt3"
+    },
+    "attempt3/routes/valkey-single/results.json": {
+      "bytes": 46280,
+      "member": "routes/valkey-single/results.json",
+      "sha256": "a5b6ec3d55088f36ae711e583a81ff23b1d5bb41fdcf9de2f8e654a188062117",
+      "source": "attempt3"
+    },
+    "attempt4/README.md": {
+      "bytes": 5472,
+      "member": "README.md",
+      "sha256": "601133652866ac268ce5704bb570210a2527306f2df670f1b9c997778566f7af",
+      "source": "attempt4"
+    },
+    "attempt4/historical-reuse-comparison.json": {
+      "bytes": 2240,
+      "member": "historical-reuse-comparison.json",
+      "sha256": "430c45589aabc1587287f3a1c62d1f2c45be71b58c9173067325713ac41bb72d",
+      "source": "attempt4"
+    },
+    "attempt4/image-locks.json": {
+      "bytes": 847,
+      "member": "image-locks.json",
+      "sha256": "e36996ded6e3112327969761ea8a99602e9fb4344316d1b2e9acaa34dc5caf25",
+      "source": "attempt4"
+    },
+    "attempt4/observed-image-locks.json": {
+      "bytes": 5083,
+      "member": "observed-image-locks.json",
+      "sha256": "95d87f20fc787be35ec873206d99c977a8300f9fbb0ea7342901d20a9a0108ab",
+      "source": "attempt4"
+    },
+    "attempt4/public-requirements.lock": {
+      "bytes": 80007,
+      "member": "public-requirements.lock",
+      "sha256": "ac66ea778987e7d6465903c9465efe3b79cee08723b6aa32b448bf4b427c5659",
+      "source": "attempt4"
+    },
+    "attempt4/routes/clickhouse-cluster-s3/results.json": {
+      "bytes": 111942,
+      "member": "routes/clickhouse-cluster-s3/results.json",
+      "sha256": "c8881bca6573ee5df3428e8c6fe58357b9bd906fa13dd6c1ea8256e5f0d60c83",
+      "source": "attempt4"
+    },
+    "attempt4/routes/clickhouse-cluster/results.json": {
+      "bytes": 104865,
+      "member": "routes/clickhouse-cluster/results.json",
+      "sha256": "cab96115451db9ebd687adec90971b4f5dea56b29b9254bd464c5ac085eadec4",
+      "source": "attempt4"
+    },
+    "attempt4/routes/clickhouse-single-s3/results.json": {
+      "bytes": 93788,
+      "member": "routes/clickhouse-single-s3/results.json",
+      "sha256": "eb96a26734b3d003852a6ccb15a1afaafc06f6862a31bfea17a498fd98b5a45b",
+      "source": "attempt4"
+    },
+    "attempt4/routes/clickhouse-single/results.json": {
+      "bytes": 84130,
+      "member": "routes/clickhouse-single/results.json",
+      "sha256": "cc79a153f76a800eeb73c512fc337b288ebebbc760b476f618229813e7db9542",
+      "source": "attempt4"
+    },
+    "attempt5/README.md": {
+      "bytes": 5188,
+      "member": "README.md",
+      "sha256": "9a6ba11fccbab64d57cb07f0d87c187dcfe548f009427f3b910f0d8afdfdafe6",
+      "source": "attempt5"
+    },
+    "attempt5/append-contracts.xml": {
+      "bytes": 1794,
+      "member": "append-contracts.xml",
+      "sha256": "3d8599c1990128537bdccc600e7bcd6fa0167dc761a52f4cde16235bff707aa7",
+      "source": "attempt5"
+    },
+    "attempt5/collector.xml": {
+      "bytes": 399,
+      "member": "collector.xml",
+      "sha256": "5fd7114a6462509dd8750cd6398b8b502ff1dd5b8baf71d9b13f03a7daae2977",
+      "source": "attempt5"
+    },
+    "attempt5/collector/full-mapping-probe.json": {
+      "bytes": 57071,
+      "member": "collector/full-mapping-probe.json",
+      "sha256": "041c1de3b0124c747dcf9f11083265c5f477486e491966c7d16575f603141ce8",
+      "source": "attempt5"
+    },
+    "attempt5/collector/gateway-core-one-row-pagination.json": {
+      "bytes": 4657,
+      "member": "collector/gateway-core-one-row-pagination.json",
+      "sha256": "e903a8566a05d9af9b4f7142249b08c63b1b281607cb47cbf665a0685d2b2c22",
+      "source": "attempt5"
+    },
+    "attempt5/collector/gateway-plugin-public-records.json": {
+      "bytes": 36942,
+      "member": "collector/gateway-plugin-public-records.json",
+      "sha256": "943d3ec523e269435a5765b0b123a1be6777acef8c09c2433e78d34f23ef040f",
+      "source": "attempt5"
+    },
+    "attempt5/collector/gateway-public-records.json": {
+      "bytes": 111173,
+      "member": "collector/gateway-public-records.json",
+      "sha256": "a694718ece7b3eb6df7aa2f6fcfef1add85512f23e94c2827fc298ed6d28c697",
+      "source": "attempt5"
+    },
+    "attempt5/collector/gateway-startup-query-audit.json": {
+      "bytes": 3192,
+      "member": "collector/gateway-startup-query-audit.json",
+      "sha256": "737e4fbf92e57742c329618e0153a87b08d83fa6027fbc055503e4a8556dc225",
+      "source": "attempt5"
+    },
+    "attempt5/collector/sidecar-core-one-row-pagination.json": {
+      "bytes": 4657,
+      "member": "collector/sidecar-core-one-row-pagination.json",
+      "sha256": "29abc2958c9b7767095f8f009246d385255b2cf365eca52b6e38d07f4b6110da",
+      "source": "attempt5"
+    },
+    "attempt5/collector/sidecar-plugin-public-records.json": {
+      "bytes": 37008,
+      "member": "collector/sidecar-plugin-public-records.json",
+      "sha256": "3cc0871a39987781e968a667a02a8447daf482728af38c3a1050b570c75d36ce",
+      "source": "attempt5"
+    },
+    "attempt5/collector/sidecar-public-records.json": {
+      "bytes": 111173,
+      "member": "collector/sidecar-public-records.json",
+      "sha256": "fede06350bcc1af2e05ae69c793a1fed8c913d93f635241d0bf06a8d29583cc0",
+      "source": "attempt5"
+    },
+    "attempt5/collector/sidecar-startup-query-audit.json": {
+      "bytes": 3192,
+      "member": "collector/sidecar-startup-query-audit.json",
+      "sha256": "d0ff34f6e0aaf8d55d965b68e0c75565da329a23a7a6369bc50879eb2f092eb3",
+      "source": "attempt5"
+    },
+    "attempt5/current-contract-inventory.json": {
+      "bytes": 140837,
+      "member": "current-contract-inventory.json",
+      "sha256": "a23337fd5a8b2b62b8d0c6261f8f85f2d59aad072cfd2b13928fa584157a94e9",
+      "source": "attempt5"
+    },
+    "attempt5/final-result-audit.json": {
+      "bytes": 571,
+      "member": "final-result-audit.json",
+      "sha256": "852d0c09f0ad1c7d0ae437e4ffa9cc22528e58a167ba69683b7d452b426edc2a",
+      "source": "attempt5"
+    },
+    "attempt5/fixture-adaptations.json": {
+      "bytes": 1462,
+      "member": "fixture-adaptations.json",
+      "sha256": "a4a82a1da0bd13d4bceade956cab1950e7bf366730e88557ce9e12cfa2a02d54",
+      "source": "attempt5"
+    },
+    "attempt5/legacy-byte-preservation.json": {
+      "bytes": 764,
+      "member": "legacy-byte-preservation.json",
+      "sha256": "da4024ef415fe9f730576fa33b400b972acf1165f498d06191b7203c9a204884",
+      "source": "attempt5"
+    },
+    "attempt5/observed-image-locks.json": {
+      "bytes": 2809,
+      "member": "observed-image-locks.json",
+      "sha256": "b3bdb6e8b1133634420962840c324c8fd844915a9a85420f64755a7e4ca04076",
+      "source": "attempt5"
+    },
+    "attempt5/original-input-rerun.json": {
+      "bytes": 1088,
+      "member": "original-input-rerun.json",
+      "sha256": "875a4416c89e09a0b7db3dba681c178d31b6140093468b0878cc31cfae337150",
+      "source": "attempt5"
+    },
+    "attempt5/public-artifact-verification.json": {
+      "bytes": 29352,
+      "member": "public-artifact-verification.json",
+      "sha256": "b4f580e71f063283e7803b46a9b15b9f139911e109071fa867078281ae1bedd4",
+      "source": "attempt5"
+    },
+    "attempt5/public-requirements.lock": {
+      "bytes": 80007,
+      "member": "public-requirements.lock",
+      "sha256": "ac66ea778987e7d6465903c9465efe3b79cee08723b6aa32b448bf4b427c5659",
+      "source": "attempt5"
+    },
+    "attempt5/release-comparison.json": {
+      "bytes": 4881,
+      "member": "release-comparison.json",
+      "sha256": "1baa2f2608ca5f490292e6c3c6f0dceecae7067da0f5377fa05ee90fa980fb69",
+      "source": "attempt5"
+    },
+    "attempt5/released-contracts-run.log": {
+      "bytes": 3144,
+      "member": "released-contracts-run.log",
+      "sha256": "3313d3efbf1b528cc38a96a96e67961a4db55a8a516d39ba4bb2bcd37f612247",
+      "source": "attempt5"
+    },
+    "attempt5/released-contracts.xml": {
+      "bytes": 2979,
+      "member": "released-contracts.xml",
+      "sha256": "e8cf93fd5ae55f9618d9304706dbb3036e5c523e112e1e47fab6107bc6084de2",
+      "source": "attempt5"
+    },
+    "attempt5/reuse-assessment.json": {
+      "bytes": 2656,
+      "member": "reuse-assessment.json",
+      "sha256": "872ac103798e44fea51eb23187f46eb3f38fba9b8f37e02edbdfb25ade2596bf",
+      "source": "attempt5"
+    },
+    "attempt5/route-inventory.json": {
+      "bytes": 34966,
+      "member": "route-inventory.json",
+      "sha256": "6fc30e8f7f203c5b5328998f8c346ea6e794775b03e46ca703f5d912a74dfd2d",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/clickhouse-cluster-external.json": {
+      "bytes": 8156,
+      "member": "route-plans/clickhouse-cluster-external.json",
+      "sha256": "310287bc6acd494047e97d4b8c3dd605965611a1964ab3b5644312206eecd9fc",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/clickhouse-cluster-managed.json": {
+      "bytes": 8154,
+      "member": "route-plans/clickhouse-cluster-managed.json",
+      "sha256": "4bacdb5603fffb1909dd91e6d8102635e01aed782797773cb0e53176cdb49bc0",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/clickhouse-single-external.json": {
+      "bytes": 8162,
+      "member": "route-plans/clickhouse-single-external.json",
+      "sha256": "443cb2ce3f10ff0bd865f880449aba198a8000f4a9895321765a079d1ee62772",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/clickhouse-single-managed.json": {
+      "bytes": 8160,
+      "member": "route-plans/clickhouse-single-managed.json",
+      "sha256": "a61402bee04ece7c6c59efa9f9816f2a44724abd9c4110819400e7a74f8ef5e9",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/core-parsing.json": {
+      "bytes": 918,
+      "member": "route-plans/core-parsing.json",
+      "sha256": "fcd2e5895295f4d0f57991d3924d2c95ad626c5c2d39bdcd236775607632958b",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/kafka-cluster-external.json": {
+      "bytes": 9834,
+      "member": "route-plans/kafka-cluster-external.json",
+      "sha256": "a24a53f79db62b2d2bd8ccf012d16b3e96a1bc33008a1f4394c754f53a1c473f",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/kafka-cluster-managed.json": {
+      "bytes": 9832,
+      "member": "route-plans/kafka-cluster-managed.json",
+      "sha256": "59617242d11e163fdfec61ddf2a1cfcfd965fbca450164db8218c564bfa604e9",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/kafka-test-external.json": {
+      "bytes": 9716,
+      "member": "route-plans/kafka-test-external.json",
+      "sha256": "4a162f4d232a9dceca8f0072dee67de822110bf1e4c3e80fa6d68c70c2ad341a",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/kafka-test-managed.json": {
+      "bytes": 9714,
+      "member": "route-plans/kafka-test-managed.json",
+      "sha256": "6140b97a756ddfd687c3f5ea58d9f9db187df4f3577f65898ee23457156a01c8",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/objects-cluster-external.json": {
+      "bytes": 9341,
+      "member": "route-plans/objects-cluster-external.json",
+      "sha256": "2d307b26436595ca63133d061b64fae94900201de981398625a98d275e329b9e",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/objects-cluster-managed.json": {
+      "bytes": 9338,
+      "member": "route-plans/objects-cluster-managed.json",
+      "sha256": "6b830d502b7724f0f9014697bec6c40348b6a4952f0bbb5976597608ca6702ea",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/objects-external.json": {
+      "bytes": 9340,
+      "member": "route-plans/objects-external.json",
+      "sha256": "a3a9015e8ac4674de6cb343bfb43c394418d658c63ea1067f68850c2d4827c41",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/objects-managed.json": {
+      "bytes": 9337,
+      "member": "route-plans/objects-managed.json",
+      "sha256": "c818f22d7b057333d1b90f854d8f524026a64d2d5613f06015dfafae5c87e572",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/opensearch-cluster-external.json": {
+      "bytes": 18020,
+      "member": "route-plans/opensearch-cluster-external.json",
+      "sha256": "edb50613f1ccf569f0a00274f75de821f4ccfd3083fe3e19e02dd2cf1699e190",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/opensearch-cluster-managed.json": {
+      "bytes": 18018,
+      "member": "route-plans/opensearch-cluster-managed.json",
+      "sha256": "56faa23fd203413f66d66a62b26df816901430391e441b1c18abc738832aa171",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/opensearch-single-external.json": {
+      "bytes": 18027,
+      "member": "route-plans/opensearch-single-external.json",
+      "sha256": "eb77a2697c8b107d6774276bdd741de14830bf2059f42b12bf13076589139df2",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/opensearch-single-managed.json": {
+      "bytes": 18025,
+      "member": "route-plans/opensearch-single-managed.json",
+      "sha256": "4d0993fdea1bb265e314f63d296741fb0a47eb14b57a734f1ca06f8b919e292c",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/postgresql-cluster-external.json": {
+      "bytes": 6277,
+      "member": "route-plans/postgresql-cluster-external.json",
+      "sha256": "4fb236294501ffb4cfdc7b3479e67d328e1cd48acceb88e7e779d3279175070a",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/postgresql-cluster-managed.json": {
+      "bytes": 6275,
+      "member": "route-plans/postgresql-cluster-managed.json",
+      "sha256": "293429e05d106d1b85037e1a0b00f8c312f431f970a3e6f1f03044d040a3f09b",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/postgresql-single-external.json": {
+      "bytes": 6296,
+      "member": "route-plans/postgresql-single-external.json",
+      "sha256": "aa105a7c2ea38c483edce029be36656253f4b6b955ffcb35c27c0fde3e751e97",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/postgresql-single-managed.json": {
+      "bytes": 6294,
+      "member": "route-plans/postgresql-single-managed.json",
+      "sha256": "5d1c744aa21a873c84929ca6cdb6611f8cb84eda33f8f53547c320ed504c1adb",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/results.json": {
+      "bytes": 7666,
+      "member": "route-plans/results.json",
+      "sha256": "17a8ef0fcb0a9bdc2df336de56bbc4c18c4c9a950cbb93c735e29ccc369d5a66",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/valkey-sentinel-external.json": {
+      "bytes": 6874,
+      "member": "route-plans/valkey-sentinel-external.json",
+      "sha256": "b1c6c7e4781c55860ac822061d0cd76987f7a7b4aa89f854f472f882d033587e",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/valkey-sentinel-managed.json": {
+      "bytes": 6872,
+      "member": "route-plans/valkey-sentinel-managed.json",
+      "sha256": "810863c500369cf91aed7119386275f2b0baf86add6cebf62a6e66e7f3b4c7be",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/valkey-single-external.json": {
+      "bytes": 6740,
+      "member": "route-plans/valkey-single-external.json",
+      "sha256": "0199308d58103bef275b97566ecc17e6f38169764fecf38da549182636b5b610",
+      "source": "attempt5"
+    },
+    "attempt5/route-plans/valkey-single-managed.json": {
+      "bytes": 6738,
+      "member": "route-plans/valkey-single-managed.json",
+      "sha256": "b2faa05ecd10d605cac8f0934e8959e3d5d16db04a473f544d2ba155720231c1",
+      "source": "attempt5"
+    },
+    "attempt5/source-provenance.json": {
+      "bytes": 358,
+      "member": "source-provenance.json",
+      "sha256": "f901fccaa001865f990fa73bffa0babec1b19728b438cf6b7bb30955340e8e76",
+      "source": "attempt5"
+    },
+    "shared-lock/REPORT.md": {
+      "bytes": 10772,
+      "member": "REPORT.md",
+      "sha256": "3696c87e5f52ffd2c9a618da8603a03b7d105d7b4b81777c495be1fb9fe2246c",
+      "source": "shared-lock"
+    },
+    "shared-lock/REPRODUCE.md": {
+      "bytes": 11419,
+      "member": "REPRODUCE.md",
+      "sha256": "59a8aaefa90c055b979b4ea5fcff8291963fe4922a0f08eb1b32070b778745b3",
+      "source": "shared-lock"
+    },
+    "shared-lock/RESULTS.md": {
+      "bytes": 1872,
+      "member": "RESULTS.md",
+      "sha256": "a93df87a3a81cf03c1229cda885bdf88c680805f76bdfb09fc4e1cd50d52684d",
+      "source": "shared-lock"
+    },
+    "shared-lock/installation.json": {
+      "bytes": 490098,
+      "member": "installation.json",
+      "sha256": "ce1d15175d8f5b1e981b9bbe90464393c06bab20d7e93cb0c13d5ba30dab9f22",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/clickhouse-replicated.xml": {
+      "bytes": 589,
+      "member": "results/clickhouse-replicated.xml",
+      "sha256": "e20ba36300bd87593e86410ab524e697e87165d5c12f56d53d0cbad17ceca680",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/clickhouse-standalone.xml": {
+      "bytes": 4709,
+      "member": "results/clickhouse-standalone.xml",
+      "sha256": "f912b4435cec392bb56f320bd6a02ffc3555903322b8c1366aed38b2be46bdef",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/config-artifact.xml": {
+      "bytes": 2769,
+      "member": "results/config-artifact.xml",
+      "sha256": "b0b4c0487519e0b6a5981f2357c9e66afe256bacae9783464262af8a22ac4fc0",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/cost.xml": {
+      "bytes": 2069,
+      "member": "results/cost.xml",
+      "sha256": "fc29b6a5ee9965791c98c0cc5c192de579aa9957152f8375de400e59625ccc64",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/kafka-cluster.xml": {
+      "bytes": 1521,
+      "member": "results/kafka-cluster.xml",
+      "sha256": "3684da70fa31e3400a3aa6ce59783f9a71286b02aec8889ac353c1b6707233e6",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/observability.xml": {
+      "bytes": 762,
+      "member": "results/observability.xml",
+      "sha256": "02bfa52ba90683a9f11cfdaf3c428b324a275b165071bfe8f0e4911da602ddca",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/oci.xml": {
+      "bytes": 609,
+      "member": "results/oci.xml",
+      "sha256": "e743877fb614329eef96fd3b9a6c7f0179a776279bbe049f79635d2f828f606e",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/opensearch-cluster-node-loss.xml": {
+      "bytes": 361,
+      "member": "results/opensearch-cluster-node-loss.xml",
+      "sha256": "3dd1a2ac7c99091f223ae83ae53dbb06718398e9b4eccf69ce6d7dd3d5a79ad4",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/opensearch-cluster-real.xml": {
+      "bytes": 333,
+      "member": "results/opensearch-cluster-real.xml",
+      "sha256": "53218fe86b39c536c10d78a80b41296ff7b1285fac9afe93d40b25affa02cc3e",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/opensearch-cluster-three-node.xml": {
+      "bytes": 351,
+      "member": "results/opensearch-cluster-three-node.xml",
+      "sha256": "41a3781446d51f927ecc69335570ca91618a13d9ccc77c91e7c1eb37fa1fe4ee",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/opensearch-single.xml": {
+      "bytes": 333,
+      "member": "results/opensearch-single.xml",
+      "sha256": "0a30c1eb6775ddaeb2f6feaf1330b19d43f6694af05e7c3bb61aaca31d844911",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/packed-host16.xml": {
+      "bytes": 5280,
+      "member": "results/packed-host16.xml",
+      "sha256": "5f141f190852ef82f36afc7a3e6fd102816853aeb213a7a11056095bd94eac27",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/packed-host17.xml": {
+      "bytes": 5280,
+      "member": "results/packed-host17.xml",
+      "sha256": "43ed081a71d666f54d19af8ac9be35ff342169a06469ff277b91e6e2beb9ed35",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/postgresql16.xml": {
+      "bytes": 17317,
+      "member": "results/postgresql16.xml",
+      "sha256": "6633ce92e958d6436f7a4b616846d024a183046ec065965f412826a1a9363054",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/postgresql17.xml": {
+      "bytes": 17317,
+      "member": "results/postgresql17.xml",
+      "sha256": "1b66485dea862a17edb39103262c581e4393fe73127fa8ef1722dc8a71faa379",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/projection-runner16.xml": {
+      "bytes": 1567,
+      "member": "results/projection-runner16.xml",
+      "sha256": "4cd6a8b9dfa1dfc3630b7b90c859c53d43578ee6e10e90b9cc4072d738a5d9c4",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/s3-final.xml": {
+      "bytes": 374,
+      "member": "results/s3-final.xml",
+      "sha256": "a619124f67b3a24c386e1d7f999777846f0d2f04508b7ae6d836ff1b2537f543",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/usage-clickhouse-final.xml": {
+      "bytes": 366,
+      "member": "results/usage-clickhouse-final.xml",
+      "sha256": "71112fe3e59feb75cdeecd09a53fa4d59992ca422ae2ed6dfdcfed5b244641d2",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/usage-clickhouse-retry.xml": {
+      "bytes": 7027,
+      "member": "results/usage-clickhouse-retry.xml",
+      "sha256": "711981d7207da52f46fb72d5c750c249b94696cfcaf05672033e48f2435cb2c7",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/usage.xml": {
+      "bytes": 10826,
+      "member": "results/usage.xml",
+      "sha256": "4623f481b17b4de4a33216e8d3f4ddd86bf1dd2800f576ea749f29af66741125",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/valkey-failover.xml": {
+      "bytes": 382,
+      "member": "results/valkey-failover.xml",
+      "sha256": "4298016a94f647924f8022675ebcbfbb2899e5f29289ba5ca2da8be4b703d1ca",
+      "source": "shared-lock"
+    },
+    "shared-lock/results/valkey-standalone.xml": {
+      "bytes": 371,
+      "member": "results/valkey-standalone.xml",
+      "sha256": "c8f79214597b3148063a3541ee77bc50be8d1ada8d0d40dd3d341f8386fa40bc",
+      "source": "shared-lock"
+    },
+    "shared-lock/runs/postgresql16-cluster/cluster-integration.xml": {
+      "bytes": 19945,
+      "member": "runs/postgresql16-cluster/cluster-integration.xml",
+      "sha256": "54d5589a4a86bcb9bc2dad8bae46d8b43b44df5e6b6fffa7d3e0091449ef12f6",
+      "source": "shared-lock"
+    },
+    "shared-lock/runs/postgresql16-cluster/cluster-projection-tests.xml": {
+      "bytes": 1797,
+      "member": "runs/postgresql16-cluster/cluster-projection-tests.xml",
+      "sha256": "8af2c34de6316e0de9d32c4624b935a090cebb39d7ff870fa4e3f9f48da0a4df",
+      "source": "shared-lock"
+    },
+    "shared-lock/runs/postgresql16-cluster/cluster-tests.xml": {
+      "bytes": 387,
+      "member": "runs/postgresql16-cluster/cluster-tests.xml",
+      "sha256": "a864abec369a794adcb638f7e9eea8684adfd2820643c9414f345149c3aac692",
+      "source": "shared-lock"
+    },
+    "shared-lock/runs/postgresql17-cluster/cluster-integration.xml": {
+      "bytes": 19945,
+      "member": "runs/postgresql17-cluster/cluster-integration.xml",
+      "sha256": "cc3c40aee3ac1014934b29f53aef432a1dd9aa21909c0ee163b6e291a2818e60",
+      "source": "shared-lock"
+    },
+    "shared-lock/runs/postgresql17-cluster/cluster-projection-tests.xml": {
+      "bytes": 1797,
+      "member": "runs/postgresql17-cluster/cluster-projection-tests.xml",
+      "sha256": "f6626dd3b372812d9ba811df93d280b72491a82dc0ef26e5dd8804a3413293ee",
+      "source": "shared-lock"
+    },
+    "shared-lock/runs/postgresql17-cluster/cluster-tests.xml": {
+      "bytes": 387,
+      "member": "runs/postgresql17-cluster/cluster-tests.xml",
+      "sha256": "72269497b0c6b67a79a6681365c3c33974ef67656c58403eaf1b2f8734c6e8b0",
+      "source": "shared-lock"
+    },
+    "shared-lock/sources/meridian_storage_kafka-1.1.0/evidence/cluster-conformance-4.3.1.xml": {
+      "bytes": 1521,
+      "member": "sources/meridian_storage_kafka-1.1.0/evidence/cluster-conformance-4.3.1.xml",
+      "sha256": "3684da70fa31e3400a3aa6ce59783f9a71286b02aec8889ac353c1b6707233e6",
+      "source": "shared-lock"
+    },
+    "shared-lock/sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/cluster/config/common.xml": {
+      "bytes": 586,
+      "member": "sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/cluster/config/common.xml",
+      "sha256": "35cd38fecf9e3cfe2f322cb6a9468d1bc014ccae53aa79ccde65fc55f1653aaf",
+      "source": "shared-lock"
+    },
+    "shared-lock/sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/cluster/config/keeper.xml": {
+      "bytes": 799,
+      "member": "sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/cluster/config/keeper.xml",
+      "sha256": "7157cdaffb59b07e336388a5aad52fd2a25307e329943752bd5190ef531e6f72",
+      "source": "shared-lock"
+    },
+    "shared-lock/sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/cluster/config/replica-1.xml": {
+      "bytes": 150,
+      "member": "sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/cluster/config/replica-1.xml",
+      "sha256": "2679a2e03fbbe5ced673191e4e482f4659d73cdce23ed5b1b4a2b8aed1e7e5a2",
+      "source": "shared-lock"
+    },
+    "shared-lock/sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/cluster/config/replica-2.xml": {
+      "bytes": 150,
+      "member": "sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/cluster/config/replica-2.xml",
+      "sha256": "e4da835a6573c50773207c060915ddfa59fb1d4bbf75ba3fbc0adb250509a143",
+      "source": "shared-lock"
+    },
+    "shared-lock/sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/integration/backup.xml": {
+      "bytes": 273,
+      "member": "sources/zephytiju-MeridianClickHouseAdapter-757b79b/tests/integration/backup.xml",
+      "sha256": "6ac0bf8e80aacfde27db560d01af88a24d87943a2bf837382418c9caeaef0026",
+      "source": "shared-lock"
+    }
+  },
+  "scope": "Accepted local-only conformance evidence; original executions retain their measured release scope. No AWS or production verification.",
+  "snapshotSha256": "0652f6f15bece46af1969040099e514d02ef02cbc0717f8bcb97705cb95e40df",
+  "sources": {
+    "attempt3": {
+      "archiveSha256": "307c1d232a77d5545fdbafedfde8744f3cc62252a8035dcd07ecfa90675f14a2",
+      "attachment": "80bacdbc-63e8-493c-ac03-634ff8364084",
+      "task": "https://applink.feishu.cn/client/todo/detail?guid=71887b4b-a04e-43a1-85c5-4b9d528e18db"
+    },
+    "attempt4": {
+      "archiveSha256": "7a38e53b4208c91af19707625fbde1536c9e221f00ea57d0bf8ba3d7675ef0e3",
+      "attachment": "74a434ed-9c6a-4222-b822-fcfbf679e766",
+      "task": "https://applink.feishu.cn/client/todo/detail?guid=71887b4b-a04e-43a1-85c5-4b9d528e18db"
+    },
+    "attempt5": {
+      "archiveSha256": "cc06c76fe56847570231ab97460e2fb76a345ebb40c5671644cba243f9684010",
+      "attachment": "f5b03bc4-03f2-44ad-b26f-44ffa8c37618",
+      "task": "https://applink.feishu.cn/client/todo/detail?guid=71887b4b-a04e-43a1-85c5-4b9d528e18db"
+    },
+    "shared-lock": {
+      "archiveSha256": "ab4e574718d44d05a78582d826fe95466e1220e401966248e2c2e8485bdd1cd0",
+      "attachment": "1ceb43e8-9d0c-49b3-b3eb-a69941a4b4c0",
+      "task": "https://applink.feishu.cn/client/todo/detail?guid=acc7f730-a62c-4318-8523-2e9b9a12a18b"
+    }
+  }
+}

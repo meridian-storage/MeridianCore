@@ -1,0 +1,9 @@
+{
+  "name": "core-closure-legacy-host",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@zephytiju/meridian-storage-constructs": "1.1.0",
+    "@pulumi/pulumi": "3.257.0"
+  }
+}
