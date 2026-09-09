@@ -1,0 +1,11 @@
+{
+  "name": "meridian-core-conformance-consumer",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@pulumi/docker": "5.2.0",
+    "@pulumi/pulumi": "3.257.0",
+    "@zephytiju/meridian-storage-constructs": "1.6.1",
+    "tsx": "4.23.12"
+  }
+}

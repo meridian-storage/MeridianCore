@@ -5,6 +5,15 @@
 All notable changes are documented here. This project follows Semantic
 Versioning for the Python distribution and its released public contracts.
 
+## Unreleased — conformance evidence only
+
+- Gate Core CI on the normally installed public Core 1.1.0 / Constructs 1.6.1 /
+  ClickHouse 1.1.3 closure with exact Python and npm locks, all-family contract
+  comparisons, retained negative cases and actual packaged PostgreSQL hosts.
+- Publish exact artifact, engine, host and scoped local operational evidence for
+  26 routes and both Collector modes; keep AWS exclusions and earlier failures
+  explicit. This change does not republish or alter any existing distribution.
+
 ## 1.1.0 - 2026-09-07
 
 - Treat descriptor tested-release tables as historical metadata, preserving
