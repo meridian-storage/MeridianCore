@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 [build-system]
-requires = ["hatchling==1.27.0"]
+requires = ["hatchling==1.32.3"]
 build-backend = "hatchling.build"
 
 [project]
@@ -30,7 +30,7 @@ dependencies = []
 [project.optional-dependencies]
 test = [
   "build>=1.2,<2",
-  "hatchling==1.27.0",
+  "hatchling==1.32.3",
   "jsonschema>=4.23,<5",
   "mypy>=1.15,<2",
   "pytest>=8.3,<10",
