@@ -32,7 +32,12 @@
       "put",
       "put_if_absent"
     ],
-    "evidence": ["append", "create_resource", "publish_schema", "query"],
+    "evidence": [
+      "append",
+      "create_resource",
+      "publish_schema",
+      "query"
+    ],
     "streaming": [
       "acknowledge",
       "create_resource",
@@ -45,7 +50,7 @@
       "subscribe"
     ]
   },
-  "coreVersion": "1.1.0",
+  "coreVersion": "1.2.0",
   "distribution": "meridian-storage-core",
   "entryPointGroups": {
     "adapters": "meridian_storage.adapters",
@@ -116,6 +121,8 @@
     "CORE_VERSION",
     "CatalogManifest",
     "CatalogNotFound",
+    "CommitOutcomeError",
+    "CommitState",
     "CompatibilityError",
     "ConfigurationError",
     "ConflictError",

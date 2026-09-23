@@ -245,6 +245,14 @@ class ExecutionResult:
 
 @runtime_checkable
 class AdapterSession(Protocol):
+    """Stable lifecycle SPI.
+
+    Deadline-capable implementations capture current_context at begin, narrow
+    with ExecutionRequest.context, and retain one budget through cleanup.
+    Bounded I/O and typed commit outcomes require explicit Binding capabilities;
+    satisfying this structural protocol alone does not establish those guarantees.
+    """
+
     def begin(self) -> None: ...
 
     def execute(self, request: ExecutionRequest) -> ExecutionResult: ...

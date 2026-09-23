@@ -215,6 +215,23 @@ class TransactionError(MeridianError):
         super().__init__(code, message, category=ErrorCategory.TRANSACTION, **details)
 
 
+class CommitState(StrEnum):
+    KNOWN_COMMITTED = "known-committed"
+    KNOWN_NOT_COMMITTED = "known-not-committed"
+    UNKNOWN_COMMIT = "unknown-commit"
+
+
+class CommitOutcomeError(MeridianTimeoutError):
+    """No effect retry: reconcile the domain operation under fresh authorization."""
+
+    def __init__(self, state: CommitState, message: str) -> None:
+        self.commit_state = state
+        super().__init__(ErrorCode.TRANSACTION_STATE, message, retryable=False)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {**super().to_dict(), "commitState": self.commit_state.value}
+
+
 class CorruptionError(MeridianError):
     def __init__(self, code: ErrorCode | str, message: str, **details: Any) -> None:
         super().__init__(code, message, category=ErrorCategory.CORRUPTION, **details)
@@ -234,6 +251,8 @@ __all__ = [
     "AuthenticationError",
     "AuthorizationError",
     "CatalogNotFound",
+    "CommitOutcomeError",
+    "CommitState",
     "CompatibilityError",
     "ConfigurationError",
     "ConflictError",

@@ -22,6 +22,8 @@ from meridian_storage._versions import contract_matches
 from meridian_storage.context import OperationContext, bind_context, current_context
 from meridian_storage.errors import (
     CatalogNotFound,
+    CommitOutcomeError,
+    CommitState,
     CompatibilityError,
     ConfigurationError,
     ErrorCode,
@@ -882,6 +884,7 @@ class Meridian:
             )
         context = cast(OperationContext, current_context()).resolve_request_id()
         assert context.request_id is not None
+        context.check_budget()
         execution_id = str(uuid.uuid4())
         snapshot = self._begin_operation()
         operation: Operation | None = None
@@ -1084,10 +1087,22 @@ class Meridian:
         context: OperationContext,
         binding: BindingConfig,
     ) -> OperationContext:
+        context.check_budget()
         timeout_ms = min(
             binding.client.operation_timeout_ms,
             self._config.validation.default_operation_timeout_ms,
         )
+        # Capture the client cap before any work that can consume its budget.
+        # Never rebase an inherited absolute bound from a remaining duration:
+        # a scheduler pause between those clock reads would extend admission.
+        monotonic_deadline = time.monotonic() + timeout_ms / 1000.0
+        inherited_deadline = (
+            context._deadline_monotonic
+            if context._deadline_monotonic is not None
+            else context.monotonic_deadline
+        )
+        if inherited_deadline is not None:
+            monotonic_deadline = min(monotonic_deadline, inherited_deadline)
         configured_deadline = datetime.now(UTC) + timedelta(milliseconds=timeout_ms)
         deadline = (
             configured_deadline
@@ -1100,7 +1115,9 @@ class Meridian:
                 "Operation deadline elapsed before Adapter execution",
                 request_id=context.request_id,
             )
-        return replace(context, deadline=deadline)
+        effective = replace(context, deadline=deadline, monotonic_deadline=monotonic_deadline)
+        effective.check_budget()
+        return effective
 
     def _execute_operation(
         self,
@@ -1220,6 +1237,7 @@ class Meridian:
         raise AssertionError("retry loop did not return or raise")
 
     def _execute_one_session(self, binding_id: str, request: ExecutionRequest) -> ExecutionResult:
+        request.context.check_budget()
         session = self._adapter_runtimes[binding_id].open_session(transactional=False)
         if not isinstance(session, AdapterSession):
             raise CompatibilityError(
@@ -1251,6 +1269,7 @@ class Meridian:
     ) -> TransactionLease:
         context = cast(OperationContext, current_context()).resolve_request_id()
         assert context.request_id is not None
+        context.check_budget()
         snapshot = self._snapshot_for_handle()
         ref = snapshot.resolve_resource(resource)
         binding = snapshot.binding_for(ref)
@@ -1295,7 +1314,9 @@ class Meridian:
                     ErrorCode.ADAPTER_CONTRACT,
                     f"Binding {binding.binding_id!r} returned an invalid transactional session",
                 )
+            context.check_budget()
             session.begin()
+            context.check_budget()
             frame = TransactionFrame(
                 runtime_identity=self._identity,
                 binding_id=binding.binding_id,
@@ -1303,6 +1324,7 @@ class Meridian:
                 resource_ref=str(ref),
                 session=session,
                 snapshot=snapshot,
+                context=context,
             )
             token = install_transaction(frame)
             return TransactionLease(frame, nested=False, token=token)
@@ -1330,7 +1352,7 @@ class Meridian:
         exc: BaseException | None,
         traceback: TracebackType | None,
     ) -> None:
-        del exc, traceback
+        del traceback
         if lease.exited:
             raise RuntimeError("transaction lease was already exited")
         lease.exited = True
@@ -1347,8 +1369,19 @@ class Meridian:
             if frame.rollback_only:
                 frame.session.rollback()
             else:
+                if frame.context is not None:
+                    try:
+                        frame.context.check_budget()
+                    except MeridianTimeoutError as expired:
+                        raise CommitOutcomeError(
+                            CommitState.KNOWN_NOT_COMMITTED, "transaction expired before commit"
+                        ) from expired
+                frame.commit_state = CommitState.UNKNOWN_COMMIT
                 frame.session.commit()
+                frame.commit_state = CommitState.KNOWN_COMMITTED
         except BaseException as caught:
+            if isinstance(caught, CommitOutcomeError):
+                frame.commit_state = caught.commit_state
             failure = caught
         try:
             frame.session.close()
@@ -1360,7 +1393,7 @@ class Meridian:
             with self._condition:
                 self._active_transactions -= 1
                 self._condition.notify_all()
-        if failure is not None:
+        if failure is not None and exc is None:
             lifecycle_error = self._transaction_component_error(
                 failure,
                 binding_id=frame.binding_id,

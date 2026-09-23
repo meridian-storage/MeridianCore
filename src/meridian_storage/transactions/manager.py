@@ -9,6 +9,8 @@ from dataclasses import dataclass
 from types import TracebackType
 from typing import TYPE_CHECKING, Protocol
 
+from meridian_storage.context import OperationContext
+from meridian_storage.errors import CommitState
 from meridian_storage.registry.resources import ResourceRef
 from meridian_storage.spi.adapters import AdapterSession
 
@@ -24,8 +26,10 @@ class TransactionFrame:
     resource_ref: str
     session: AdapterSession
     snapshot: RegistrySnapshot
+    context: OperationContext | None = None
     depth: int = 1
     rollback_only: bool = False
+    commit_state: CommitState = CommitState.KNOWN_NOT_COMMITTED
 
 
 @dataclass(slots=True)
@@ -84,6 +88,15 @@ class Transaction:
             raise RuntimeError("a Transaction context manager cannot be entered twice")
         self._lease = self._runtime._enter_transaction(self._resource)
         return self
+
+    @property
+    def commit_state(self) -> CommitState:
+        """Storage outcome; unknown requires fresh domain reconciliation, never retry."""
+        return (
+            CommitState.KNOWN_NOT_COMMITTED
+            if self._lease is None
+            else self._lease.frame.commit_state
+        )
 
     def set_rollback_only(self) -> None:
         if self._lease is None or self._lease.exited:
