@@ -5,6 +5,15 @@
 All notable changes are documented here. This project follows Semantic
 Versioning for the Python distribution and its released public contracts.
 
+## 1.2.0 - 2026-09-23
+
+- Carry one inherited deadline and cancellation signal through operation and
+  transaction admission. Preserve the original absolute deadline across context
+  copies, including scheduler delays.
+- Expose typed commit outcomes so callers can reconcile an unknown commit
+  without repeating an effect. Preserve the original error during cleanup.
+- Package the previously qualified native-operation repairs under a new version.
+
 ## Unreleased — conformance evidence only
 
 - Gate Core CI on the normally installed public Core 1.1.0 / Constructs 1.6.1 /

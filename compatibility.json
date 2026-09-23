@@ -11,7 +11,7 @@
       "1.x"
     ]
   },
-  "coreVersion": "1.1.0",
+  "coreVersion": "1.2.0",
   "conformance": {
     "coreContractVersion": "1.0.0",
     "catalogOperationVersionFixture": "2.0.0",

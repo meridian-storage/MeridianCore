@@ -3,16 +3,19 @@
 
 from __future__ import annotations
 
+import math
 import re
+import time
 import uuid
 from collections.abc import Iterator, Mapping
 from contextlib import contextmanager
 from contextvars import ContextVar, Token
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
+from threading import Event
 from types import MappingProxyType
 
-from meridian_storage.errors import ErrorCode, ValidationError
+from meridian_storage.errors import ErrorCode, MeridianTimeoutError, ValidationError
 
 _LABEL_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_.-]{0,63}$")
 _current_context: ContextVar[OperationContext | None] = ContextVar(
@@ -63,6 +66,9 @@ class OperationContext:
     idempotency_key: str | None = None
     trace_context: Mapping[str, str] = field(default_factory=dict)
     deadline: datetime | None = None
+    monotonic_deadline: float | None = None
+    _deadline_monotonic: float | None = field(default=None, init=False, repr=False, compare=False)
+    cancellation: Event | None = field(default=None, compare=False, repr=False)
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -92,6 +98,17 @@ class OperationContext:
                     "deadline must be timezone-aware",
                 )
             object.__setattr__(self, "deadline", self.deadline.astimezone(UTC))
+            converted = time.monotonic() + max(
+                0.0, (self.deadline - datetime.now(UTC)).total_seconds()
+            )
+            bound = (
+                converted
+                if self.monotonic_deadline is None
+                else min(converted, self.monotonic_deadline)
+            )
+            object.__setattr__(self, "_deadline_monotonic", bound)
+        if self.monotonic_deadline is not None and not math.isfinite(self.monotonic_deadline):
+            raise ValidationError(ErrorCode.CONTEXT_INVALID, "monotonic_deadline must be finite")
 
     def resolve_request_id(self) -> OperationContext:
         """Return a context carrying a generated request identity when absent."""
@@ -107,15 +124,38 @@ class OperationContext:
             idempotency_key=self.idempotency_key,
             trace_context=self.trace_context,
             deadline=self.deadline,
+            monotonic_deadline=self._deadline_monotonic
+            if self._deadline_monotonic is not None
+            else self.monotonic_deadline,
+            cancellation=self.cancellation,
         )
 
     def remaining_seconds(self, *, now: datetime | None = None) -> float | None:
-        if self.deadline is None:
-            return None
-        current = now or datetime.now(UTC)
-        if current.tzinfo is None or current.utcoffset() is None:
-            raise ValueError("now must be timezone-aware")
-        return max(0.0, (self.deadline - current.astimezone(UTC)).total_seconds())
+        if self.cancellation is not None and self.cancellation.is_set():
+            return 0.0
+        deadline = (
+            self._deadline_monotonic
+            if self._deadline_monotonic is not None
+            else self.monotonic_deadline
+        )
+        remaining = None if deadline is None else max(0.0, deadline - time.monotonic())
+        # Explicit `now` remains supported for deterministic wall-clock callers.
+        if now is not None:
+            if now.tzinfo is None or now.utcoffset() is None:
+                raise ValueError("now must be timezone-aware")
+            if self.deadline is not None:
+                wall = max(0.0, (self.deadline - now.astimezone(UTC)).total_seconds())
+                remaining = wall if remaining is None else min(remaining, wall)
+        return remaining
+
+    def check_budget(self) -> None:
+        remaining = self.remaining_seconds()
+        if remaining is not None and remaining <= 0:
+            raise MeridianTimeoutError(
+                ErrorCode.DEADLINE_EXCEEDED,
+                "operation deadline expired or cancelled",
+                request_id=self.request_id,
+            )
 
 
 def current_context(*, required: bool = True) -> OperationContext | None:

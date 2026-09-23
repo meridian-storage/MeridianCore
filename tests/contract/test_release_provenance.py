@@ -116,7 +116,7 @@ def test_independent_release_metadata_passes_runtime_and_public_helper(version, 
         # A declaration, even one matching config, cannot manufacture an observation.
         assert details["observedEngineVersion"] == "unavailable"
         assert details["coreContractVersion"] == "1.0.0"
-        assert details["coreDistributionVersion"] == "1.1.0"
+        assert details["coreDistributionVersion"] == __import__("meridian_storage").__version__
     finally:
         runtime.close()
     selected = target()
@@ -179,7 +179,7 @@ def test_legacy_protocol_is_not_relabelled_as_observed_server_release(protocol):
         engine_version=protocol,
         required_capability_fingerprint=manifest.fingerprint,
         compatibility_pins={
-            "coreDistributionVersion": "1.1.0",
+            "coreDistributionVersion": __import__("meridian_storage").__version__,
             "observedEngineVersion": "server-build-2030",
         },
     )
