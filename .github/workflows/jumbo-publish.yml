@@ -1,0 +1,31 @@
+# Member forwarder for jumbo publication (Jumbo Build & Versioning Standard,
+# section 3.5 "Executors and the Publication Contract").
+#
+# This repository carries NO release logic of its own: every release step
+# (lock, fingerprint, dedup, promote, publish on bump, index append) is owned
+# by the reusable jumbo-publish workflow in zephytiju/JumboBuild. This file
+# only calls it. Adopted from templates/member-jumbo-publish.yml in
+# zephytiju/JumboBuild; <ref> is pinned to a full commit SHA, which also pins
+# the jumbo binary this workflow builds (the reusable workflow builds jumbo
+# from the commit its file was called at).
+#
+# Secrets flow in with `secrets: inherit` (JUNTAI_GITHUB_ARTIFACT_TOKEN and
+# JUNTAI_INDEX_TOKEN; PYPI_TOKEN only when publishing to the public registry
+# is enabled). Tokens are consumed via secrets and environment only — never
+# as literals in any file.
+name: jumbo publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  jumbo-publish:
+    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@bf354d774e3b4d4ea05ac108cd7c0f2a4d318a6b
+    secrets: inherit
+    # Reusable workflows cannot elevate permissions; the GitHub Release and
+    # the tag it creates live on THIS repository, so the calling job grants
+    # contents: write. No other permission is needed.
+    permissions:
+      contents: write
