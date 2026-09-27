@@ -11,10 +11,12 @@
 # (GITHUB_WORKFLOW_REF names the CALLER's workflow), so callers pin the
 # jumbo build ref explicitly and the two pins always agree.
 #
-# Secrets flow in with `secrets: inherit` (JUNTAI_GITHUB_ARTIFACT_TOKEN and
-# JUNTAI_INDEX_TOKEN; PYPI_TOKEN only when publishing to the public registry
-# is enabled). Tokens are consumed via secrets and environment only — never
-# as literals in any file.
+# Secrets flow in with `secrets: inherit`. The executor resolves index/
+# artifact auth at run time: preferred is the org CI GitHub App pair
+# (JUNTAI_CI_APP_ID + JUNTAI_CI_APP_PRIVATE_KEY, minted into a short-lived
+# installation token); fallback is the static token pair
+# (JUNTAI_GITHUB_ARTIFACT_TOKEN + JUNTAI_INDEX_TOKEN). Tokens are consumed
+# via secrets and environment only — never as literals in any file.
 name: jumbo publish
 
 on:
@@ -24,15 +26,15 @@ on:
 
 jobs:
   jumbo-publish:
-    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@c30106c7385ee8005b41655a6fc92365d494cd05
+    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@f77541e77846d1b18e05c3510e361ae72e0de764
     secrets: inherit
     with:
       # Same JumboBuild commit the uses: line pins: jumbo is built from
       # exactly the executor version this forwarder calls.
-      jumbobuild-ref: c30106c7385ee8005b41655a6fc92365d494cd05
+      jumbobuild-ref: f77541e77846d1b18e05c3510e361ae72e0de764
     # Reusable workflows cannot elevate permissions; the calling job must
     # grant everything the called workflow declares. The reusable workflow
-    # (pinned c30106c7385ee8005b41655a6fc92365d494cd05) declares workflow-level
+    # (pinned f77541e77846d1b18e05c3510e361ae72e0de764) declares workflow-level
     # contents: write + packages: write, so this job grants both: contents: write
     # covers the GitHub Release and its tag, which live on THIS repository;
     # packages: write is required by the called workflow's declaration and is
