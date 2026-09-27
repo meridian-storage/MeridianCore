@@ -26,15 +26,15 @@ on:
 
 jobs:
   jumbo-publish:
-    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@f77541e77846d1b18e05c3510e361ae72e0de764
+    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@ae0027c0f67ea7eb862428800228bfcdf20ed4c5
     secrets: inherit
     with:
       # Same JumboBuild commit the uses: line pins: jumbo is built from
       # exactly the executor version this forwarder calls.
-      jumbobuild-ref: f77541e77846d1b18e05c3510e361ae72e0de764
+      jumbobuild-ref: ae0027c0f67ea7eb862428800228bfcdf20ed4c5
     # Reusable workflows cannot elevate permissions; the calling job must
     # grant everything the called workflow declares. The reusable workflow
-    # (pinned f77541e77846d1b18e05c3510e361ae72e0de764) declares workflow-level
+    # (pinned ae0027c0f67ea7eb862428800228bfcdf20ed4c5) declares workflow-level
     # contents: write + packages: write, so this job grants both: contents: write
     # covers the GitHub Release and its tag, which live on THIS repository;
     # packages: write is required by the called workflow's declaration and is
