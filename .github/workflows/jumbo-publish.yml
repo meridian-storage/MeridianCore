@@ -5,9 +5,11 @@
 # (lock, fingerprint, dedup, promote, publish on bump, index append) is owned
 # by the reusable jumbo-publish workflow in zephytiju/JumboBuild. This file
 # only calls it. Adopted from templates/member-jumbo-publish.yml in
-# zephytiju/JumboBuild; <ref> is pinned to a full commit SHA, which also pins
-# the jumbo binary this workflow builds (the reusable workflow builds jumbo
-# from the commit its file was called at).
+# zephytiju/JumboBuild; <ref> is pinned to a full commit SHA, and the same
+# SHA is passed as the jumbobuild-ref input: under workflow_call the
+# reusable workflow cannot discover the ref its own file lives at
+# (GITHUB_WORKFLOW_REF names the CALLER's workflow), so callers pin the
+# jumbo build ref explicitly and the two pins always agree.
 #
 # Secrets flow in with `secrets: inherit` (JUNTAI_GITHUB_ARTIFACT_TOKEN and
 # JUNTAI_INDEX_TOKEN; PYPI_TOKEN only when publishing to the public registry
@@ -22,11 +24,15 @@ on:
 
 jobs:
   jumbo-publish:
-    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@bf354d774e3b4d4ea05ac108cd7c0f2a4d318a6b
+    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@c30106c7385ee8005b41655a6fc92365d494cd05
     secrets: inherit
+    with:
+      # Same JumboBuild commit the uses: line pins: jumbo is built from
+      # exactly the executor version this forwarder calls.
+      jumbobuild-ref: c30106c7385ee8005b41655a6fc92365d494cd05
     # Reusable workflows cannot elevate permissions; the calling job must
     # grant everything the called workflow declares. The reusable workflow
-    # (pinned bf354d774e3b4d4ea05ac108cd7c0f2a4d318a6b) declares workflow-level
+    # (pinned c30106c7385ee8005b41655a6fc92365d494cd05) declares workflow-level
     # contents: write + packages: write, so this job grants both: contents: write
     # covers the GitHub Release and its tag, which live on THIS repository;
     # packages: write is required by the called workflow's declaration and is
