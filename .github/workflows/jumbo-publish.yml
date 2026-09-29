@@ -23,18 +23,30 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      commit:
+        description: "Commit SHA of this repository to release (default: the triggering commit)"
+        type: string
+        default: ""
 
 jobs:
   jumbo-publish:
-    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@a430410d101541742f445f735c7a28c21627d663
+    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@d623cf8477c69a89af3e8b698d0b75f59311e985
     secrets: inherit
     with:
       # Same JumboBuild commit the uses: line pins: jumbo is built from
       # exactly the executor version this forwarder calls.
-      jumbobuild-ref: a430410d101541742f445f735c7a28c21627d663
+      jumbobuild-ref: d623cf8477c69a89af3e8b698d0b75f59311e985
+      # Release-commit passthrough (the executor's documented `commit`
+      # input): empty on push runs and on plain dispatches means the
+      # triggering commit; an explicit dispatch input releases that exact
+      # existing commit — the re-release path a fingerprint-equal dedup
+      # re-run uses. The executor itself defaults an empty value to
+      # GITHUB_SHA, so push behavior is unchanged.
+      commit: ${{ inputs.commit }}
     # Reusable workflows cannot elevate permissions; the calling job must
     # grant everything the called workflow declares. The reusable workflow
-    # (pinned a430410d101541742f445f735c7a28c21627d663) declares workflow-level
+    # (pinned d623cf8477c69a89af3e8b698d0b75f59311e985) declares workflow-level
     # contents: write + packages: write, so this job grants both: contents: write
     # covers the GitHub Release and its tag, which live on THIS repository;
     # packages: write is required by the called workflow's declaration and is
