@@ -61,11 +61,13 @@ def test_compatibility_ledger_and_package_data_are_versioned() -> None:
 @pytest.mark.packaging
 def test_ci_has_multi_python_quality_reproducibility_and_gated_publication() -> None:
     ci = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
-    release = (ROOT / ".github/workflows/release.yml").read_text(encoding="utf-8")
+    forwarder = (ROOT / ".github/workflows/jumbo-publish.yml").read_text(encoding="utf-8")
     assert '["3.12", "3.13", "3.14"]' in ci
     assert "compare_artifacts.py" in ci
     assert "generate_sbom.py" in ci
     assert "include-hidden-files: true" in ci
-    assert "attest-build-provenance" in release
-    assert "PYPI_TRUSTED_PUBLISHING_ENABLED == 'true'" in release
-    assert "gh-action-pypi-publish" in release
+    # Publication is owned by the jumbo-publish executor (Jumbo standard §3.5):
+    # the forwarder opts this public repository into registry republication
+    # driven by the jumbo-computed version.
+    assert "zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@" in forwarder
+    assert "publish-to-public-registry: true" in forwarder
