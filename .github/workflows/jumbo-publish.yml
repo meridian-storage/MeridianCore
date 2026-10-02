@@ -1,27 +1,16 @@
 # Member forwarder for jumbo publication (Jumbo Build & Versioning Standard,
-# section 3.5 "Executors and the Publication Contract").
-#
-# This repository carries NO release logic of its own: every release step
-# (lock, fingerprint, dedup, promote, publish on bump, index append) is owned
-# by the reusable jumbo-publish workflow in zephytiju/JumboBuild. This file
-# only calls it. Adopted from templates/member-jumbo-publish.yml in
-# zephytiju/JumboBuild; <ref> is pinned to a full commit SHA, and the same
-# SHA is passed as the jumbobuild-ref input: under workflow_call the
-# reusable workflow cannot discover the ref its own file lives at
-# (GITHUB_WORKFLOW_REF names the CALLER's workflow), so callers pin the
-# jumbo build ref explicitly and the two pins always agree.
-#
-# Secrets flow in with `secrets: inherit`. The executor resolves index/
-# artifact auth at run time: preferred is the org CI GitHub App pair
-# (JUNTAI_CI_APP_ID + JUNTAI_CI_APP_PRIVATE_KEY, minted into a short-lived
-# installation token); fallback is the static token pair
-# (JUNTAI_GITHUB_ARTIFACT_TOKEN + JUNTAI_INDEX_TOKEN). Tokens are consumed
-# via secrets and environment only — never as literals in any file.
+# section 3.5 "Executors and the Publication Contract"). This repository
+# carries NO release logic of its own; every release step (lock,
+# fingerprint, dedup, promote, publish on bump, index append, public
+# registry publication driven by the jumbo-computed version) is owned by
+# the reusable jumbo-publish workflow in zephytiju/JumboBuild. Pin note:
+# 87cc29d is the JumboBuild commit whose npm publication path runs the
+# standard build before npm pack (released artifacts carry dist) and whose
+# dependency materialization fetches private repositories with the org CI
+# app installation token (JumboBuild pull/42).
 name: jumbo publish
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
     inputs:
       commit:
@@ -31,27 +20,14 @@ on:
 
 jobs:
   jumbo-publish:
-    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@d623cf8477c69a89af3e8b698d0b75f59311e985
+    uses: zephytiju/JumboBuild/.github/workflows/jumbo-publish.yml@87cc29db3b49b63b7874785c72257f3d66ca0c0d
     secrets: inherit
     with:
-      # Same JumboBuild commit the uses: line pins: jumbo is built from
-      # exactly the executor version this forwarder calls.
-      jumbobuild-ref: d623cf8477c69a89af3e8b698d0b75f59311e985
-      # Release-commit passthrough (the executor's documented `commit`
-      # input): empty on push runs and on plain dispatches means the
-      # triggering commit; an explicit dispatch input releases that exact
-      # existing commit — the re-release path a fingerprint-equal dedup
-      # re-run uses. The executor itself defaults an empty value to
-      # GITHUB_SHA, so push behavior is unchanged.
+      jumbobuild-ref: 87cc29db3b49b63b7874785c72257f3d66ca0c0d
       commit: ${{ inputs.commit }}
-    # Reusable workflows cannot elevate permissions; the calling job must
-    # grant everything the called workflow declares. The reusable workflow
-    # (pinned d623cf8477c69a89af3e8b698d0b75f59311e985) declares workflow-level
-    # contents: write + packages: write, so this job grants both: contents: write
-    # covers the GitHub Release and its tag, which live on THIS repository;
-    # packages: write is required by the called workflow's declaration and is
-    # only exercised with publish-image: true (this repository does not enable
-    # image publication).
+      # Public repository: also publish to the public registry (npm/PyPI)
+      # for external consumers, driven by the jumbo-computed version.
+      publish-to-public-registry: true
     permissions:
       contents: write
       packages: write
