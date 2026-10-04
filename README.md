@@ -164,3 +164,21 @@ see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
 Release provenance, historical tested versions, deployment integrity and retained
 contract checks are documented in [release validation](docs/release-validation.md).
+
+## Build and release (Jumbo)
+
+This repository is jumbo-managed (Jumbo Build & Versioning Standard,
+section 3.5): resolution, builds, and releases run through jumbo, never
+ad-hoc pip/uv installs.
+
+```sh
+jumbo lock   # resolve internal packages from the JumboIndex, third-party from PyPI
+jumbo build  # build + tests at the resolved closure
+```
+
+The internal dependencies (the internal platform packages) are resolved from the JumboIndex;
+the lock records the exact promoted build of each. Consumers likewise
+resolve this package (`meridian-storage-core`) from the JumboIndex. Releases are dispatch-only through `.github/workflows/jumbo-publish.yml`;
+as a public package, external publication is driven by the jumbo-computed
+version, and every artifact's SHA-256 is recorded in the append-only
+JumboIndex.
